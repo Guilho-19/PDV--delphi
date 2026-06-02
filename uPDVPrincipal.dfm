@@ -3,8 +3,8 @@ object frmPDV: TfrmPDV
   Top = 0
   BorderStyle = bsNone
   Caption = 'frmPDV'
-  ClientHeight = 622
-  ClientWidth = 1123
+  ClientHeight = 673
+  ClientWidth = 1281
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -17,7 +17,7 @@ object frmPDV: TfrmPDV
   object pnlCabecalho: TPanel
     Left = 0
     Top = 0
-    Width = 1123
+    Width = 1281
     Height = 41
     Align = alTop
     TabOrder = 0
@@ -27,7 +27,7 @@ object frmPDV: TfrmPDV
     object lblCabecalho: TLabel
       Left = 1
       Top = 1
-      Width = 1121
+      Width = 1279
       Height = 39
       Align = alClient
       Alignment = taCenter
@@ -39,5 +39,9 @@ object frmPDV: TfrmPDV
       ExplicitWidth = 339
       ExplicitHeight = 15
     end
+  end
+  object trmRelogio: TTimer
+    Left = 1216
+    Top = 608
   end
 end
