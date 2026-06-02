@@ -3,8 +3,8 @@ object frmPDV: TfrmPDV
   Top = 0
   BorderStyle = bsNone
   Caption = 'frmPDV'
-  ClientHeight = 480
-  ClientWidth = 640
+  ClientHeight = 622
+  ClientWidth = 1123
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -12,20 +12,22 @@ object frmPDV: TfrmPDV
   Font.Name = 'Segoe UI'
   Font.Style = []
   WindowState = wsMaximized
+  OnShow = FormShow
   TextHeight = 15
   object pnlCabecalho: TPanel
     Left = 0
     Top = 0
-    Width = 640
+    Width = 1123
     Height = 41
     Align = alTop
     TabOrder = 0
     ExplicitLeft = 8
     ExplicitTop = 8
+    ExplicitWidth = 640
     object lblCabecalho: TLabel
       Left = 1
       Top = 1
-      Width = 638
+      Width = 1121
       Height = 39
       Align = alClient
       Alignment = taCenter
