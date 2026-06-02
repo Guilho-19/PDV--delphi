@@ -41,7 +41,6 @@ object frmPDV: TfrmPDV
     end
   end
   object trmRelogio: TTimer
-    OnTimer = trmRelogioTimer
     Left = 1216
     Top = 608
   end
