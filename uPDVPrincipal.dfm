@@ -3,8 +3,8 @@ object frmPDV: TfrmPDV
   Top = 0
   BorderStyle = bsNone
   Caption = 'frmPDV'
-  ClientHeight = 673
-  ClientWidth = 1281
+  ClientHeight = 628
+  ClientWidth = 1242
   Color = clBtnFace
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -17,7 +17,7 @@ object frmPDV: TfrmPDV
   object pnlCabecalho: TPanel
     Left = 0
     Top = 0
-    Width = 1281
+    Width = 1242
     Height = 41
     Align = alTop
     TabOrder = 0
@@ -27,12 +27,18 @@ object frmPDV: TfrmPDV
     object lblCabecalho: TLabel
       Left = 1
       Top = 1
-      Width = 1279
+      Width = 1240
       Height = 39
       Align = alClient
       Alignment = taCenter
       AutoSize = False
       Caption = 'NOME LOJA / NOME OPERADOR / DATA HORA / STATUS CAIXA'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -21
+      Font.Name = 'Segoe UI'
+      Font.Style = [fsBold]
+      ParentFont = False
       Layout = tlCenter
       ExplicitLeft = 168
       ExplicitTop = 13
@@ -40,9 +46,38 @@ object frmPDV: TfrmPDV
       ExplicitHeight = 15
     end
   end
+  object pnlLateral: TPanel
+    Left = 0
+    Top = 41
+    Width = 857
+    Height = 519
+    Align = alLeft
+    TabOrder = 1
+    ExplicitHeight = 587
+  end
+  object pnlRodape: TPanel
+    Left = 0
+    Top = 560
+    Width = 1242
+    Height = 68
+    Align = alBottom
+    TabOrder = 2
+  end
+  object gridItens: TStringGrid
+    Left = 857
+    Top = 41
+    Width = 385
+    Height = 519
+    Align = alClient
+    TabOrder = 3
+    ExplicitLeft = 856
+    ExplicitTop = 32
+    ExplicitWidth = 320
+    ExplicitHeight = 120
+  end
   object trmRelogio: TTimer
     OnTimer = trmRelogioTimer
-    Left = 1216
-    Top = 608
+    Left = 1480
+    Top = 776
   end
 end

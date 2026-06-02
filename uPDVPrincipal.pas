@@ -4,13 +4,16 @@ interface
 
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
-  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.ExtCtrls, Vcl.StdCtrls;
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.ExtCtrls, Vcl.StdCtrls, Vcl.Grids;
 
 type
   TfrmPDV = class(TForm)
     pnlCabecalho: TPanel;
     lblCabecalho: TLabel;
     trmRelogio: TTimer;
+    pnlLateral: TPanel;
+    pnlRodape: TPanel;
+    gridItens: TStringGrid;
     procedure FormShow(Sender: TObject);
     procedure trmRelogioTimer(Sender: TObject);
   private
