@@ -14,12 +14,14 @@ type
     pnlLateral: TPanel;
     pnlRodape: TPanel;
     gridItens: TStringGrid;
+    lblTotalVenda: TLabel;
     procedure FormShow(Sender: TObject);
     procedure trmRelogioTimer(Sender: TObject);
   private
     { Private declarations }
     FOperadorAtual: string;
     FStatusCaixa: string;
+    FValorTotalVenda: double;
     procedure AtualizaCabecalho(ANomeOperador: string; AStatusCaixa: string);
     procedure BuscaOperador(AIdOperador: Integer);
     procedure InsereItemFita(ACodigo, ADescricao: string; AQtde, AValorUnit, ADesconto: Double);
@@ -115,6 +117,8 @@ var
   Subtotal: Double;
 begin
   Subtotal := (AQtde * AValorUnit) - ADesconto;
+  FValorTotalVenda := FValorTotalVenda + SubTotal;
+  lblTotalVenda.Caption := 'TOTAL R$ ' + FormatFloat('#,##0.00', FValorTotalVenda);
 
   if (gridItens.RowCount = 2) and (gridItens.Cells[1, 1] = '')  then
   begin

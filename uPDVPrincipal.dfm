@@ -58,6 +58,24 @@ object frmPDV: TfrmPDV
     Height = 68
     Align = alBottom
     TabOrder = 2
+    object lblTotalVenda: TLabel
+      Left = 931
+      Top = 1
+      Width = 310
+      Height = 66
+      Align = alRight
+      Caption = 'lblTotalVenda'
+      Color = clMenuHighlight
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -48
+      Font.Name = 'Segoe UI'
+      Font.Style = [fsBold]
+      ParentColor = False
+      ParentFont = False
+      ExplicitLeft = 1170
+      ExplicitHeight = 65
+    end
   end
   object gridItens: TStringGrid
     Left = 753
