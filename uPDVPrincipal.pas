@@ -22,6 +22,7 @@ type
     FStatusCaixa: string;
     procedure AtualizaCabecalho(ANomeOperador: string; AStatusCaixa: string);
     procedure BuscaOperador(AIdOperador: Integer);
+    procedure InsereItemFita(ACodigo, ADescricao: string; AQtde, AValorUnit, ADesconto: Double);
   public
     { Public declarations }
   end;
@@ -47,9 +48,6 @@ begin
 
   lblCabecalho.Caption := Format(mascaraCabecalho, [ANomeOperador, DataHoraAtual, AStatusCaixa]);
 end;
-
-
-
 
 procedure TfrmPDV.BuscaOperador(AIdOperador: Integer);
 begin
@@ -87,6 +85,7 @@ begin
   FStatusCaixa := 'CAIXA LIVRE';
   BuscaOperador(1);
   AtualizaCabecalho(FOperadorAtual, FStatusCaixa);
+  gridItens.RowCount := 2;
 
   gridItens.Cells[0, 0] := 'Item';
   gridItens.Cells[1, 0] := 'Código';
@@ -104,6 +103,38 @@ begin
   gridItens.ColWidths[5] := 90;
   gridItens.ColWidths[6] := 120;
 
+  InsereItemFita('789100', 'CAFÉ PRETO 500G', 1, 14.99, 0.00);
+  InsereItemFita('789200', 'MACARRÃO PARAFUSO 250G', 2, 8.00, 1.50);
+
+end;
+
+procedure TfrmPDV.InsereItemFita(ACodigo, ADescricao: string; AQtde, AValorUnit,
+  ADesconto: Double);
+var
+  LinhaAtual: integer;
+  Subtotal: Double;
+begin
+  Subtotal := (AQtde * AValorUnit) - ADesconto;
+
+  if (gridItens.RowCount = 2) and (gridItens.Cells[1, 1] = '')  then
+  begin
+    LinhaAtual := 1;
+  end
+  else
+  begin
+    gridItens.RowCount := gridItens.RowCount + 1;
+    LinhaAtual := gridItens.RowCount - 1;
+  end;
+
+  gridItens.Cells[0, LinhaAtual] := IntToStr(LinhaAtual);
+  gridItens.Cells[1, LinhaAtual] := ACodigo;
+  gridItens.Cells[2, LinhaAtual] := ADescricao;
+  gridItens.Cells[3, LinhaAtual] := FormatFloat('0.000', AQtde);
+  gridItens.Cells[4, LinhaAtual] := FormatFloat('#,##0.00', AValorUnit);
+  gridItens.Cells[5, LinhaAtual] := FormatFloat('#,##0.00', ADesconto);
+  gridItens.Cells[6, LinhaAtual] := FormatFloat('#,##0.00', SubTotal);
+
+  gridItens.Row := LinhaAtual;
 end;
 
 procedure TfrmPDV.trmRelogioTimer(Sender: TObject);

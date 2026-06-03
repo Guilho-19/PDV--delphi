@@ -67,8 +67,6 @@ object frmPDV: TfrmPDV
     Align = alClient
     ColCount = 7
     TabOrder = 3
-    ExplicitLeft = 857
-    ExplicitWidth = 385
   end
   object trmRelogio: TTimer
     OnTimer = trmRelogioTimer
