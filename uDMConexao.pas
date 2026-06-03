@@ -9,6 +9,7 @@ type
   TdmConexao = class(TDataModule)
     conexaoBanco: TADOConnection;
     qryOperadores: TADOQuery;
+    qryProdutos: TADOQuery;
   private
     { Private declarations }
   public

@@ -35,6 +35,7 @@ type
     procedure AtualizaCabecalho(ANomeOperador: string; AStatusCaixa: string);
     procedure BuscaOperador(AIdOperador: Integer);
     procedure InsereItemFita(ACodigo, ADescricao: string; AQtde, AValorUnit, ADesconto: Double);
+    procedure BuscarProduto(ACodigoDeBarras: string);
   public
     { Public declarations }
   end;
@@ -92,6 +93,45 @@ begin
   dmConexao.qryOperadores.Close;
 end;
 
+procedure TfrmPDV.BuscarProduto(ACodigoDeBarras: string);
+var
+  vNome: string;
+  vPreco: Double;
+  vQtdePadrao: Double;
+begin
+  dmConexao.qryProdutos.Close;
+  dmConexao.qryProdutos.SQL.Clear;
+  dmConexao.qryProdutos.SQL.Add('select codigo_barras, descricao, preco_venda from PDV_Produtos where codigo_barras = :codigo');
+  dmConexao.qryProdutos.Parameters.ParamByName('codigo').Value := ACodigoDeBarras;
+
+  try
+    dmConexao.qryProdutos.Open;
+
+    if not dmConexao.qryProdutos.IsEmpty then
+    begin
+      vNome := dmConexao.qryProdutos.FieldByName('descricao').AsString;
+      vPreco := dmConexao.qryProdutos.FieldByName('preco_venda').AsFloat;
+      vQtdePadrao := 1.000;
+
+      lblNomeProdutoAtual.Caption := vNome;
+      lblValorUnitarioAtual.Caption := FormatFloat('#,##0.00', vPreco);
+      lblQuantidadeAtual.Caption := FormatFloat('0.000', vQtdePadrao);
+
+      InsereItemFita(ACodigoDeBarras, vNome, vQtdePadrao, vPreco, 0.00);
+    end
+    else
+    begin
+      ShowMessage('Produto não encontrado!');
+    end;
+
+  except
+    on E: Exception do
+      ShowMessage('Erro ao buscar o produto no banco de dados: ' + E.Message);
+  end;
+
+  dmConexao.qryProdutos.Close;
+end;
+
 procedure TfrmPDV.edtBuscaProdutoKeyPress(Sender: TObject; var Key: Char);
 begin
   if Key = #13 then
@@ -100,7 +140,7 @@ begin
 
     if Trim(edtBuscaProduto.Text) <> '' then
     begin
-      ShowMessage('Você pesquistou por: ' + edtBuscaProduto.Text);
+      buscarProduto(Trim(edtBuscaProduto.Text));
 
       edtBuscaProduto.Clear;
       edtBuscaProduto.SetFocus;
@@ -130,9 +170,6 @@ begin
   gridItens.ColWidths[4] := 100;
   gridItens.ColWidths[5] := 90;
   gridItens.ColWidths[6] := 120;
-
-  InsereItemFita('789100', 'CAFÉ PRETO 500G', 1, 14.99, 0.00);
-  InsereItemFita('789200', 'MACARRÃO PARAFUSO 250G', 2, 8.00, 1.50);
 
 end;
 

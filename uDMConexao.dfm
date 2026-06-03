@@ -16,4 +16,10 @@ object dmConexao: TdmConexao
     Left = 32
     Top = 88
   end
+  object qryProdutos: TADOQuery
+    Connection = conexaoBanco
+    Parameters = <>
+    Left = 80
+    Top = 88
+  end
 end
