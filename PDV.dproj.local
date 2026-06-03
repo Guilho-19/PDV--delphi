@@ -2,9 +2,11 @@
 <BorlandProject>
 	<Transactions>
     <Transaction>2026/05/20 00:01:43.000.543,=C:\Users\Guilho\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
-    <Transaction>2026/06/02 08:40:14.462,=C:\Users\Guilho\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
-    <Transaction>2026/06/02 08:40:30.874,C:\Users\Guilho\Desktop\delphi-pdv\uPrincipal.pas=C:\Users\Guilho\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
-    <Transaction>2026/06/02 08:40:30.874,C:\Users\Guilho\Desktop\delphi-pdv\uPrincipal.dfm=C:\Users\Guilho\Documents\Embarcadero\Studio\Projects\Unit1.dfm</Transaction>
-    <Transaction>2026/06/02 08:40:43.289,C:\Users\Guilho\Desktop\delphi-pdv\PDV.dproj=C:\Users\Guilho\Documents\Embarcadero\Studio\Projects\Project1.dproj</Transaction>
+    <Transaction>2026/06/02 08:40:14.000.462,=C:\Users\Guilho\Documents\Embarcadero\Studio\Projects\Unit1.pas</Transaction>
+    <Transaction>2026/06/02 08:40:30.000.874,C:\Users\Guilho\Documents\Embarcadero\Studio\Projects\Unit1.dfm=C:\Users\Guilho\Desktop\delphi-pdv\uPrincipal.dfm</Transaction>
+    <Transaction>2026/06/02 08:40:30.000.874,C:\Users\Guilho\Documents\Embarcadero\Studio\Projects\Unit1.pas=C:\Users\Guilho\Desktop\delphi-pdv\uPrincipal.pas</Transaction>
+    <Transaction>2026/06/02 08:40:43.000.289,C:\Users\Guilho\Documents\Embarcadero\Studio\Projects\Project1.dproj=C:\Users\Guilho\Desktop\delphi-pdv\PDV.dproj</Transaction>
+    <Transaction>2026/06/02 20:58:25.399,=C:\Users\Guilho\Desktop\delphi-pdv\uDMConexao.pas</Transaction>
+    <Transaction>2026/06/02 20:58:25.433,=C:\Users\Guilho\Desktop\delphi-pdv\uPDVPrincipal.pas</Transaction>
   </Transactions>
 </BorlandProject>

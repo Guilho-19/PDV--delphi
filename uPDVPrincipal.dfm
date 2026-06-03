@@ -21,9 +21,6 @@ object frmPDV: TfrmPDV
     Height = 41
     Align = alTop
     TabOrder = 0
-    ExplicitLeft = 8
-    ExplicitTop = 8
-    ExplicitWidth = 640
     object lblCabecalho: TLabel
       Left = 1
       Top = 1
@@ -49,11 +46,10 @@ object frmPDV: TfrmPDV
   object pnlLateral: TPanel
     Left = 0
     Top = 41
-    Width = 857
+    Width = 753
     Height = 519
     Align = alLeft
     TabOrder = 1
-    ExplicitHeight = 587
   end
   object pnlRodape: TPanel
     Left = 0
@@ -64,16 +60,15 @@ object frmPDV: TfrmPDV
     TabOrder = 2
   end
   object gridItens: TStringGrid
-    Left = 857
+    Left = 753
     Top = 41
-    Width = 385
+    Width = 489
     Height = 519
     Align = alClient
+    ColCount = 7
     TabOrder = 3
-    ExplicitLeft = 856
-    ExplicitTop = 32
-    ExplicitWidth = 320
-    ExplicitHeight = 120
+    ExplicitLeft = 857
+    ExplicitWidth = 385
   end
   object trmRelogio: TTimer
     OnTimer = trmRelogioTimer

@@ -85,10 +85,25 @@ end;
 procedure TfrmPDV.FormShow(Sender: TObject);
 begin
   FStatusCaixa := 'CAIXA LIVRE';
-
   BuscaOperador(1);
-
   AtualizaCabecalho(FOperadorAtual, FStatusCaixa);
+
+  gridItens.Cells[0, 0] := 'Item';
+  gridItens.Cells[1, 0] := 'Código';
+  gridItens.Cells[2, 0] := 'Descrição do Produto';
+  gridItens.Cells[3, 0] := 'Qtde';
+  gridItens.Cells[4, 0] := 'Vlr Unit (R$)';
+  gridItens.Cells[5, 0] := 'Desc. (R$)';
+  gridItens.Cells[6, 0] := 'Subtotal (R$)';
+
+  gridItens.ColWidths[0] := 50;
+  gridItens.ColWidths[1] := 120;
+  gridItens.ColWidths[2] := 350;
+  gridItens.ColWidths[3] := 60;
+  gridItens.ColWidths[4] := 100;
+  gridItens.ColWidths[5] := 90;
+  gridItens.ColWidths[6] := 120;
+
 end;
 
 procedure TfrmPDV.trmRelogioTimer(Sender: TObject);
