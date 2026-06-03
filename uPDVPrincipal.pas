@@ -15,6 +15,15 @@ type
     pnlRodape: TPanel;
     gridItens: TStringGrid;
     lblTotalVenda: TLabel;
+    edtBuscaProduto: TEdit;
+    lblNomeProdutoAtual: TLabel;
+    lblValorUnitarioAtual: TLabel;
+    lblQuantidadeAtual: TLabel;
+    lblTituloProduto: TLabel;
+    lblTituloProdutoAtual: TLabel;
+    lblTituloValorUnitario: TLabel;
+    lblTituloQuantidade: TLabel;
+    imgProduto: TImage;
     procedure FormShow(Sender: TObject);
     procedure trmRelogioTimer(Sender: TObject);
   private

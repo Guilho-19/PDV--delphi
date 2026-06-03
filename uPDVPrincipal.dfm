@@ -50,6 +50,120 @@ object frmPDV: TfrmPDV
     Height = 519
     Align = alLeft
     TabOrder = 1
+    ExplicitLeft = 1
+    ExplicitTop = 46
+    object lblNomeProdutoAtual: TLabel
+      Left = 40
+      Top = 238
+      Width = 21
+      Height = 32
+      Caption = '...'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -24
+      Font.Name = 'Segoe UI'
+      Font.Style = [fsBold]
+      ParentFont = False
+    end
+    object lblValorUnitarioAtual: TLabel
+      Left = 312
+      Top = 224
+      Width = 73
+      Height = 50
+      Caption = '0,00'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -37
+      Font.Name = 'Segoe UI'
+      Font.Style = [fsBold]
+      ParentFont = False
+    end
+    object lblQuantidadeAtual: TLabel
+      Left = 552
+      Top = 228
+      Width = 81
+      Height = 45
+      Caption = '1,000'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -32
+      Font.Name = 'Segoe UI'
+      Font.Style = [fsBold]
+      ParentFont = False
+    end
+    object lblTituloProduto: TLabel
+      Left = 40
+      Top = 37
+      Width = 324
+      Height = 21
+      Caption = 'C'#211'DIGO DE BARRAS / NOME DO PRODUTO'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -16
+      Font.Name = 'Segoe UI'
+      Font.Style = [fsBold]
+      ParentFont = False
+    end
+    object lblTituloProdutoAtual: TLabel
+      Left = 40
+      Top = 173
+      Width = 130
+      Height = 21
+      Caption = 'PRODUTO ATUAL'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -16
+      Font.Name = 'Segoe UI'
+      Font.Style = [fsBold]
+      ParentFont = False
+    end
+    object lblTituloValorUnitario: TLabel
+      Left = 312
+      Top = 173
+      Width = 166
+      Height = 21
+      Caption = 'VALOR UNIT'#193'RIO (R$)'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -16
+      Font.Name = 'Segoe UI'
+      Font.Style = [fsBold]
+      ParentFont = False
+    end
+    object lblTituloQuantidade: TLabel
+      Left = 552
+      Top = 173
+      Width = 106
+      Height = 21
+      Caption = 'QUANTIDADE'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -16
+      Font.Name = 'Segoe UI'
+      Font.Style = [fsBold]
+      ParentFont = False
+    end
+    object imgProduto: TImage
+      Left = 552
+      Top = 12
+      Width = 105
+      Height = 105
+      Center = True
+      Proportional = True
+    end
+    object edtBuscaProduto: TEdit
+      Left = 40
+      Top = 64
+      Width = 417
+      Height = 53
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -32
+      Font.Name = 'Segoe UI'
+      Font.Style = [fsBold]
+      ParentFont = False
+      TabOrder = 0
+    end
   end
   object pnlRodape: TPanel
     Left = 0
@@ -59,12 +173,12 @@ object frmPDV: TfrmPDV
     Align = alBottom
     TabOrder = 2
     object lblTotalVenda: TLabel
-      Left = 931
+      Left = 1025
       Top = 1
-      Width = 310
+      Width = 216
       Height = 66
       Align = alRight
-      Caption = 'lblTotalVenda'
+      Caption = 'TOTAL R$'
       Color = clMenuHighlight
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clWindowText
@@ -73,7 +187,7 @@ object frmPDV: TfrmPDV
       Font.Style = [fsBold]
       ParentColor = False
       ParentFont = False
-      ExplicitLeft = 1170
+      ExplicitLeft = 1053
       ExplicitHeight = 65
     end
   end
