@@ -26,6 +26,7 @@ type
     imgProduto: TImage;
     procedure FormShow(Sender: TObject);
     procedure trmRelogioTimer(Sender: TObject);
+    procedure edtBuscaProdutoKeyPress(Sender: TObject; var Key: Char);
   private
     { Private declarations }
     FOperadorAtual: string;
@@ -89,6 +90,22 @@ begin
   end;
 
   dmConexao.qryOperadores.Close;
+end;
+
+procedure TfrmPDV.edtBuscaProdutoKeyPress(Sender: TObject; var Key: Char);
+begin
+  if Key = #13 then
+  begin
+    Key := #0;
+
+    if Trim(edtBuscaProduto.Text) <> '' then
+    begin
+      ShowMessage('Você pesquistou por: ' + edtBuscaProduto.Text);
+
+      edtBuscaProduto.Clear;
+      edtBuscaProduto.SetFocus;
+    end;
+  end;
 end;
 
 procedure TfrmPDV.FormShow(Sender: TObject);

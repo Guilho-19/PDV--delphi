@@ -163,7 +163,6 @@ object frmPDV: TfrmPDV
       Font.Style = [fsBold]
       ParentFont = False
       TabOrder = 0
-      OnKeyPress = edtBuscaProdutoKeyPress
     end
   end
   object pnlRodape: TPanel
