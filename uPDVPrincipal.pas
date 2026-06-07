@@ -26,9 +26,11 @@ type
     T: TImage;
     edtQuantidade: TEdit;
     lblTituloQuantidadeMult: TLabel;
+    lblLegenda: TLabel;
     procedure FormShow(Sender: TObject);
     procedure trmRelogioTimer(Sender: TObject);
     procedure edtBuscaProdutoKeyPress(Sender: TObject; var Key: Char);
+    procedure FormKeyDown(Sender: TObject; var Key: Word; Shift: TShiftState);
   private
     { Private declarations }
     FOperadorAtual: string;
@@ -115,6 +117,13 @@ begin
       vPreco := dmConexao.qryProdutos.FieldByName('preco_venda').AsFloat;
       vQtdePadrao := StrToFloatDef(edtQuantidade.Text, 1.0);
 
+      if vQtdePadrao > 999 then
+      begin
+        ShowMessage('Atenção: A quantidade máxima por item é 999.');
+        vQtdePadrao := 1.0;
+        edtQuantidade.Text := '1';
+      end;
+
       lblNomeProdutoAtual.Caption := vNome;
       lblValorUnitarioAtual.Caption := FormatFloat('#,##0.00', vPreco);
       lblQuantidadeAtual.Caption := FormatFloat('0.000', vQtdePadrao);
@@ -149,6 +158,22 @@ begin
       edtBuscaProduto.Clear;
       edtBuscaProduto.SetFocus;
     end;
+  end;
+end;
+
+procedure TfrmPDV.FormKeyDown(Sender: TObject; var Key: Word;
+  Shift: TShiftState);
+begin
+  if Key = VK_F1 then
+  begin
+    edtBuscaProduto.SetFocus;
+    edtBuscaProduto.SelectAll;
+  end;
+
+  if Key = VK_F2 then
+  begin
+    edtQuantidade.SetFocus;
+    edtQuantidade.SelectAll;
   end;
 end;
 

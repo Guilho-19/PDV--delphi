@@ -11,7 +11,9 @@ object frmPDV: TfrmPDV
   Font.Height = -12
   Font.Name = 'Segoe UI'
   Font.Style = []
+  KeyPreview = True
   WindowState = wsMaximized
+  OnKeyDown = FormKeyDown
   OnShow = FormShow
   TextHeight = 15
   object pnlCabecalho: TPanel
@@ -50,8 +52,8 @@ object frmPDV: TfrmPDV
     Height = 519
     Align = alLeft
     TabOrder = 1
-    ExplicitLeft = -160
-    ExplicitTop = -23
+    ExplicitLeft = 8
+    ExplicitTop = 46
     object lblNomeProdutoAtual: TLabel
       Left = 40
       Top = 238
@@ -188,6 +190,7 @@ object frmPDV: TfrmPDV
       Font.Height = -32
       Font.Name = 'Segoe UI'
       Font.Style = [fsBold]
+      MaxLength = 3
       ParentFont = False
       TabOrder = 1
       Text = '1'
@@ -202,10 +205,12 @@ object frmPDV: TfrmPDV
     Align = alBottom
     TabOrder = 2
     object lblTotalVenda: TLabel
-      Left = 1025
-      Top = 1
+      AlignWithMargins = True
+      Left = 1010
+      Top = 4
       Width = 216
-      Height = 66
+      Height = 60
+      Margins.Right = 15
       Align = alRight
       Caption = 'TOTAL R$'
       Color = clMenuHighlight
@@ -216,7 +221,22 @@ object frmPDV: TfrmPDV
       Font.Style = [fsBold]
       ParentColor = False
       ParentFont = False
+      ExplicitLeft = 1025
+      ExplicitTop = 1
       ExplicitHeight = 65
+    end
+    object lblLegenda: TLabel
+      AlignWithMargins = True
+      Left = 16
+      Top = 4
+      Width = 58
+      Height = 60
+      Margins.Left = 15
+      Align = alLeft
+      Caption = 'lblLegenda'
+      ExplicitLeft = 256
+      ExplicitTop = 32
+      ExplicitHeight = 15
     end
   end
   object gridItens: TStringGrid
@@ -227,8 +247,6 @@ object frmPDV: TfrmPDV
     Align = alClient
     ColCount = 7
     TabOrder = 3
-    ExplicitLeft = 753
-    ExplicitWidth = 489
   end
   object trmRelogio: TTimer
     OnTimer = trmRelogioTimer
