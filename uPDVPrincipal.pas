@@ -23,7 +23,9 @@ type
     lblTituloProdutoAtual: TLabel;
     lblTituloValorUnitario: TLabel;
     lblTituloQuantidade: TLabel;
-    imgProduto: TImage;
+    T: TImage;
+    edtQuantidade: TEdit;
+    lblTituloQuantidadeMult: TLabel;
     procedure FormShow(Sender: TObject);
     procedure trmRelogioTimer(Sender: TObject);
     procedure edtBuscaProdutoKeyPress(Sender: TObject; var Key: Char);
@@ -111,13 +113,15 @@ begin
     begin
       vNome := dmConexao.qryProdutos.FieldByName('descricao').AsString;
       vPreco := dmConexao.qryProdutos.FieldByName('preco_venda').AsFloat;
-      vQtdePadrao := 1.000;
+      vQtdePadrao := StrToFloatDef(edtQuantidade.Text, 1.0);
 
       lblNomeProdutoAtual.Caption := vNome;
       lblValorUnitarioAtual.Caption := FormatFloat('#,##0.00', vPreco);
       lblQuantidadeAtual.Caption := FormatFloat('0.000', vQtdePadrao);
 
       InsereItemFita(ACodigoDeBarras, vNome, vQtdePadrao, vPreco, 0.00);
+
+      edtQuantidade.Text := '1';
     end
     else
     begin

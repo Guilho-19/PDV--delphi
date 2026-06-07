@@ -46,12 +46,12 @@ object frmPDV: TfrmPDV
   object pnlLateral: TPanel
     Left = 0
     Top = 41
-    Width = 1049
+    Width = 753
     Height = 519
     Align = alLeft
     TabOrder = 1
-    ExplicitLeft = -160
-    ExplicitTop = -23
+    ExplicitLeft = 1
+    ExplicitTop = 46
     object lblNomeProdutoAtual: TLabel
       Left = 40
       Top = 238
@@ -66,7 +66,7 @@ object frmPDV: TfrmPDV
       ParentFont = False
     end
     object lblValorUnitarioAtual: TLabel
-      Left = 445
+      Left = 312
       Top = 224
       Width = 73
       Height = 50
@@ -79,7 +79,7 @@ object frmPDV: TfrmPDV
       ParentFont = False
     end
     object lblQuantidadeAtual: TLabel
-      Left = 685
+      Left = 552
       Top = 228
       Width = 81
       Height = 45
@@ -118,7 +118,7 @@ object frmPDV: TfrmPDV
       ParentFont = False
     end
     object lblTituloValorUnitario: TLabel
-      Left = 445
+      Left = 312
       Top = 173
       Width = 166
       Height = 21
@@ -131,7 +131,7 @@ object frmPDV: TfrmPDV
       ParentFont = False
     end
     object lblTituloQuantidade: TLabel
-      Left = 685
+      Left = 552
       Top = 173
       Width = 106
       Height = 21
@@ -143,26 +143,13 @@ object frmPDV: TfrmPDV
       Font.Style = [fsBold]
       ParentFont = False
     end
-    object T: TImage
-      Left = 880
-      Top = 388
+    object imgProduto: TImage
+      Left = 552
+      Top = 12
       Width = 105
       Height = 105
       Center = True
       Proportional = True
-    end
-    object lblTituloQuantidadeMult: TLabel
-      Left = 488
-      Top = 37
-      Width = 106
-      Height = 21
-      Caption = 'QUANTIDADE'
-      Font.Charset = DEFAULT_CHARSET
-      Font.Color = clWindowText
-      Font.Height = -16
-      Font.Name = 'Segoe UI'
-      Font.Style = [fsBold]
-      ParentFont = False
     end
     object edtBuscaProduto: TEdit
       Left = 40
@@ -176,21 +163,6 @@ object frmPDV: TfrmPDV
       Font.Style = [fsBold]
       ParentFont = False
       TabOrder = 0
-      OnKeyPress = edtBuscaProdutoKeyPress
-    end
-    object edtQuantidade: TEdit
-      Left = 488
-      Top = 64
-      Width = 123
-      Height = 53
-      Font.Charset = DEFAULT_CHARSET
-      Font.Color = clWindowText
-      Font.Height = -32
-      Font.Name = 'Segoe UI'
-      Font.Style = [fsBold]
-      ParentFont = False
-      TabOrder = 1
-      Text = '1'
       OnKeyPress = edtBuscaProdutoKeyPress
     end
   end
@@ -216,19 +188,18 @@ object frmPDV: TfrmPDV
       Font.Style = [fsBold]
       ParentColor = False
       ParentFont = False
+      ExplicitLeft = 1053
       ExplicitHeight = 65
     end
   end
   object gridItens: TStringGrid
-    Left = 1049
+    Left = 753
     Top = 41
-    Width = 193
+    Width = 489
     Height = 519
     Align = alClient
     ColCount = 7
     TabOrder = 3
-    ExplicitLeft = 753
-    ExplicitWidth = 489
   end
   object trmRelogio: TTimer
     OnTimer = trmRelogioTimer

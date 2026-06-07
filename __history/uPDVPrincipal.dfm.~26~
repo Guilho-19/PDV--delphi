@@ -143,26 +143,13 @@ object frmPDV: TfrmPDV
       Font.Style = [fsBold]
       ParentFont = False
     end
-    object T: TImage
-      Left = 880
-      Top = 388
+    object imgProduto: TImage
+      Left = 552
+      Top = 12
       Width = 105
       Height = 105
       Center = True
       Proportional = True
-    end
-    object lblTituloQuantidadeMult: TLabel
-      Left = 488
-      Top = 37
-      Width = 106
-      Height = 21
-      Caption = 'QUANTIDADE'
-      Font.Charset = DEFAULT_CHARSET
-      Font.Color = clWindowText
-      Font.Height = -16
-      Font.Name = 'Segoe UI'
-      Font.Style = [fsBold]
-      ParentFont = False
     end
     object edtBuscaProduto: TEdit
       Left = 40
@@ -176,21 +163,6 @@ object frmPDV: TfrmPDV
       Font.Style = [fsBold]
       ParentFont = False
       TabOrder = 0
-      OnKeyPress = edtBuscaProdutoKeyPress
-    end
-    object edtQuantidade: TEdit
-      Left = 488
-      Top = 64
-      Width = 123
-      Height = 53
-      Font.Charset = DEFAULT_CHARSET
-      Font.Color = clWindowText
-      Font.Height = -32
-      Font.Name = 'Segoe UI'
-      Font.Style = [fsBold]
-      ParentFont = False
-      TabOrder = 1
-      Text = '1'
       OnKeyPress = edtBuscaProdutoKeyPress
     end
   end
