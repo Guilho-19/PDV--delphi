@@ -48,15 +48,14 @@ object frmPDV: TfrmPDV
   object pnlLateral: TPanel
     Left = 0
     Top = 41
-    Width = 1049
+    Width = 1145
     Height = 519
     Align = alLeft
     TabOrder = 1
-    ExplicitLeft = 8
-    ExplicitTop = 46
+    ExplicitTop = 42
     object lblNomeProdutoAtual: TLabel
       Left = 40
-      Top = 238
+      Top = 286
       Width = 21
       Height = 32
       Caption = '...'
@@ -68,8 +67,8 @@ object frmPDV: TfrmPDV
       ParentFont = False
     end
     object lblValorUnitarioAtual: TLabel
-      Left = 445
-      Top = 224
+      Left = 746
+      Top = 272
       Width = 73
       Height = 50
       Caption = '0,00'
@@ -81,8 +80,8 @@ object frmPDV: TfrmPDV
       ParentFont = False
     end
     object lblQuantidadeAtual: TLabel
-      Left = 685
-      Top = 228
+      Left = 986
+      Top = 276
       Width = 81
       Height = 45
       Caption = '1,000'
@@ -108,7 +107,7 @@ object frmPDV: TfrmPDV
     end
     object lblTituloProdutoAtual: TLabel
       Left = 40
-      Top = 173
+      Top = 221
       Width = 130
       Height = 21
       Caption = 'PRODUTO ATUAL'
@@ -120,8 +119,8 @@ object frmPDV: TfrmPDV
       ParentFont = False
     end
     object lblTituloValorUnitario: TLabel
-      Left = 445
-      Top = 173
+      Left = 746
+      Top = 221
       Width = 166
       Height = 21
       Caption = 'VALOR UNIT'#193'RIO (R$)'
@@ -133,8 +132,8 @@ object frmPDV: TfrmPDV
       ParentFont = False
     end
     object lblTituloQuantidade: TLabel
-      Left = 685
-      Top = 173
+      Left = 986
+      Top = 221
       Width = 106
       Height = 21
       Caption = 'QUANTIDADE'
@@ -146,8 +145,8 @@ object frmPDV: TfrmPDV
       ParentFont = False
     end
     object T: TImage
-      Left = 880
-      Top = 388
+      Left = 807
+      Top = 29
       Width = 105
       Height = 105
       Center = True
@@ -221,32 +220,36 @@ object frmPDV: TfrmPDV
       Font.Style = [fsBold]
       ParentColor = False
       ParentFont = False
-      ExplicitLeft = 1025
-      ExplicitTop = 1
       ExplicitHeight = 65
     end
     object lblLegenda: TLabel
       AlignWithMargins = True
       Left = 16
       Top = 4
-      Width = 58
+      Width = 425
       Height = 60
       Margins.Left = 15
       Align = alLeft
-      Caption = 'lblLegenda'
-      ExplicitLeft = 256
-      ExplicitTop = 32
-      ExplicitHeight = 15
+      Caption = '[ F1 ] BUSCAR PRODUTO      [ F2 ] ALTERAR QUANTIDADE'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -16
+      Font.Name = 'Segoe UI'
+      Font.Style = [fsBold]
+      ParentFont = False
+      ExplicitHeight = 21
     end
   end
   object gridItens: TStringGrid
-    Left = 1049
+    Left = 1145
     Top = 41
-    Width = 193
+    Width = 97
     Height = 519
     Align = alClient
     ColCount = 7
     TabOrder = 3
+    ExplicitLeft = 1049
+    ExplicitWidth = 193
   end
   object trmRelogio: TTimer
     OnTimer = trmRelogioTimer

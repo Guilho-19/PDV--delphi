@@ -40,6 +40,7 @@ type
     procedure BuscaOperador(AIdOperador: Integer);
     procedure InsereItemFita(ACodigo, ADescricao: string; AQtde, AValorUnit, ADesconto: Double);
     procedure BuscarProduto(ACodigoDeBarras: string);
+    function SoTemNumeros(ATexto: string): Boolean;
   public
     { Public declarations }
   end;
@@ -51,7 +52,7 @@ implementation
 
 {$R *.dfm}
 
-uses uDMConexao;
+uses uDMConexao, uBuscaNomeProduto;
 
 { TfrmPDV }
 
@@ -146,14 +147,30 @@ begin
 end;
 
 procedure TfrmPDV.edtBuscaProdutoKeyPress(Sender: TObject; var Key: Char);
+var
+  TextoDigitado: string;
 begin
   if Key = #13 then
   begin
     Key := #0;
+    TextoDigitado := Trim(edtBuscaProduto.Text);
 
     if Trim(edtBuscaProduto.Text) <> '' then
     begin
-      buscarProduto(Trim(edtBuscaProduto.Text));
+      if SoTemNumeros(TextoDigitado) then
+      begin
+        BuscarProduto(TextoDigitado);
+      end
+      else
+      begin
+        frmBuscaNomeProduto.edtFiltroNome.Text := TextoDigitado;
+
+        if frmBuscaNomeProduto.ShowModal = mrOk then
+        begin
+          edtBuscaProduto.Text := dmConexao.qryConsultaNomeProduto.FieldByName('codigo_barras').AsString;
+          Exit;
+        end;
+      end;
 
       edtBuscaProduto.Clear;
       edtBuscaProduto.SetFocus;
@@ -231,6 +248,21 @@ begin
   gridItens.Cells[6, LinhaAtual] := FormatFloat('#,##0.00', SubTotal);
 
   gridItens.Row := LinhaAtual;
+end;
+
+function TfrmPDV.SoTemNumeros(ATexto: string): Boolean;
+var
+  i: integer;
+begin
+  Result := True;
+  for i := 1 to Length(ATexto) do
+  begin
+    if not (ATexto[i] in ['0'..'9']) then
+    begin
+      Result := False;
+      Break;
+    end;
+  end;
 end;
 
 procedure TfrmPDV.trmRelogioTimer(Sender: TObject);

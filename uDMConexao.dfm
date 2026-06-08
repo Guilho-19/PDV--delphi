@@ -4,8 +4,16 @@ object dmConexao: TdmConexao
   object conexaoBanco: TADOConnection
     ConnectionString = 
       'Provider=MSOLEDBSQL.1;Integrated Security=SSPI;Persist Security ' +
-      'Info=False;User ID="";Initial Catalog=PDV;Data Source="";Initial' +
-      ' File Name="";Server SPN="";Authentication="";Access Token=""'
+      'Info=False;User ID="";Initial Catalog=PDV;Data Source="";Use Pro' +
+      'cedure for Prepare=1;Auto Translate=True;Packet Size=4096;Workst' +
+      'ation ID=DESKTOP-IMACRFG;Initial File Name="";Use Encryption for' +
+      ' Data=False;Tag with column collation when possible=False;MARS C' +
+      'onnection=False;DataTypeCompatibility=0;Trust Server Certificate' +
+      '=False;Server SPN="";Application Intent=READWRITE;MultiSubnetFai' +
+      'lover=False;Use FMTONLY=False;Authentication="";Access Token="";' +
+      'TransparentNetworkIPResolution=True;Connect Retry Count=1;Connec' +
+      't Retry Interval=10'
+    LoginPrompt = False
     Provider = 'MSOLEDBSQL.1'
     Left = 48
     Top = 24
@@ -20,6 +28,26 @@ object dmConexao: TdmConexao
     Connection = conexaoBanco
     Parameters = <>
     Left = 80
+    Top = 88
+  end
+  object qryConsultaNomeProduto: TADOQuery
+    Connection = conexaoBanco
+    Parameters = <
+      item
+        Name = 'nome'
+        Attributes = [paNullable]
+        DataType = ftString
+        NumericScale = 255
+        Precision = 255
+        Size = 8000
+        Value = Null
+      end>
+    SQL.Strings = (
+      'select codigo_barras, descricao, preco_venda'
+      'from PDV_Produtos'
+      'where descricao like :nome'
+      'order by descricao')
+    Left = 128
     Top = 88
   end
 end

@@ -10,6 +10,7 @@ type
     conexaoBanco: TADOConnection;
     qryOperadores: TADOQuery;
     qryProdutos: TADOQuery;
+    qryConsultaNomeProduto: TADOQuery;
   private
     { Private declarations }
   public
