@@ -52,7 +52,6 @@ object frmPDV: TfrmPDV
     Height = 519
     Align = alLeft
     TabOrder = 1
-    ExplicitTop = 42
     object lblNomeProdutoAtual: TLabel
       Left = 40
       Top = 286
@@ -144,11 +143,11 @@ object frmPDV: TfrmPDV
       Font.Style = [fsBold]
       ParentFont = False
     end
-    object T: TImage
-      Left = 807
-      Top = 29
-      Width = 105
-      Height = 105
+    object imgProduto: TImage
+      Left = 770
+      Top = 5
+      Width = 200
+      Height = 200
       Center = True
       Proportional = True
     end
@@ -248,8 +247,6 @@ object frmPDV: TfrmPDV
     Align = alClient
     ColCount = 7
     TabOrder = 3
-    ExplicitLeft = 1049
-    ExplicitWidth = 193
   end
   object trmRelogio: TTimer
     OnTimer = trmRelogioTimer

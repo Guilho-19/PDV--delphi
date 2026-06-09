@@ -14,6 +14,7 @@ type
     qryConsultaNomeProdutocodigo_barras: TStringField;
     qryConsultaNomeProdutodescricao: TStringField;
     qryConsultaNomeProdutopreco_venda: TBCDField;
+    qryConsultaNomeProdutocaminho_imagem: TStringField;
   private
     { Private declarations }
   public

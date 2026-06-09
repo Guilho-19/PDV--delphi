@@ -4,7 +4,8 @@ interface
 
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
-  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.ExtCtrls, Vcl.StdCtrls, Vcl.Grids;
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.ExtCtrls, Vcl.StdCtrls, Vcl.Grids, Vcl.Imaging.jpeg,
+  Vcl.Imaging.pngimage;
 
 type
   TfrmPDV = class(TForm)
@@ -23,7 +24,7 @@ type
     lblTituloProdutoAtual: TLabel;
     lblTituloValorUnitario: TLabel;
     lblTituloQuantidade: TLabel;
-    T: TImage;
+    imgProduto: TImage;
     edtQuantidade: TEdit;
     lblTituloQuantidadeMult: TLabel;
     lblLegenda: TLabel;
@@ -103,10 +104,11 @@ var
   vNome: string;
   vPreco: Double;
   vQtdePadrao: Double;
+  vCaminhoImagem: string;
 begin
   dmConexao.qryProdutos.Close;
   dmConexao.qryProdutos.SQL.Clear;
-  dmConexao.qryProdutos.SQL.Add('select codigo_barras, descricao, preco_venda from PDV_Produtos where codigo_barras = :codigo');
+  dmConexao.qryProdutos.SQL.Add('select codigo_barras, descricao, preco_venda, caminho_imagem from PDV_Produtos where codigo_barras = :codigo');
   dmConexao.qryProdutos.Parameters.ParamByName('codigo').Value := ACodigoDeBarras;
 
   try
@@ -116,6 +118,7 @@ begin
     begin
       vNome := dmConexao.qryProdutos.FieldByName('descricao').AsString;
       vPreco := dmConexao.qryProdutos.FieldByName('preco_venda').AsFloat;
+      vCaminhoImagem := dmConexao.qryProdutos.FieldByName('caminho_imagem').AsString;
       vQtdePadrao := StrToFloatDef(edtQuantidade.Text, 1.0);
 
       if vQtdePadrao > 999 then
@@ -129,8 +132,16 @@ begin
       lblValorUnitarioAtual.Caption := FormatFloat('#,##0.00', vPreco);
       lblQuantidadeAtual.Caption := FormatFloat('0.000', vQtdePadrao);
 
-      InsereItemFita(ACodigoDeBarras, vNome, vQtdePadrao, vPreco, 0.00);
+      if (vCaminhoImagem <> '') and FileExists(vCaminhoImagem) then
+      begin
+        imgProduto.Picture.LoadFromFile(vCaminhoImagem);
+      end
+      else
+      begin
+        imgProduto.Picture := nil;
+      end;
 
+      InsereItemFita(ACodigoDeBarras, vNome, vQtdePadrao, vPreco, 0.00);
       edtQuantidade.Text := '1';
     end
     else

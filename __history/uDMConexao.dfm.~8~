@@ -1,0 +1,71 @@
+object dmConexao: TdmConexao
+  Height = 480
+  Width = 640
+  object conexaoBanco: TADOConnection
+    Connected = True
+    ConnectionString = 
+      'Provider=MSOLEDBSQL.1;Integrated Security=SSPI;Persist Security ' +
+      'Info=False;User ID="";Initial Catalog=PDV;Data Source="";Use Pro' +
+      'cedure for Prepare=1;Auto Translate=True;Packet Size=4096;Workst' +
+      'ation ID=DESKTOP-IMACRFG;Initial File Name="";Use Encryption for' +
+      ' Data=False;Tag with column collation when possible=False;MARS C' +
+      'onnection=False;DataTypeCompatibility=0;Trust Server Certificate' +
+      '=False;Server SPN="";Application Intent=READWRITE;MultiSubnetFai' +
+      'lover=False;Use FMTONLY=False;Authentication="";Access Token="";' +
+      'TransparentNetworkIPResolution=True;Connect Retry Count=1;Connec' +
+      't Retry Interval=10'
+    LoginPrompt = False
+    Provider = 'MSOLEDBSQL.1'
+    Left = 48
+    Top = 24
+  end
+  object qryOperadores: TADOQuery
+    Connection = conexaoBanco
+    Parameters = <>
+    Left = 32
+    Top = 88
+  end
+  object qryProdutos: TADOQuery
+    Connection = conexaoBanco
+    Parameters = <>
+    Left = 80
+    Top = 88
+  end
+  object qryConsultaNomeProduto: TADOQuery
+    Connection = conexaoBanco
+    CursorType = ctStatic
+    Parameters = <
+      item
+        Name = 'nome'
+        Attributes = [paNullable]
+        DataType = ftString
+        NumericScale = 255
+        Precision = 255
+        Size = 8000
+        Value = Null
+      end>
+    SQL.Strings = (
+      'select codigo_barras, descricao, preco_venda'
+      'from PDV_Produtos'
+      'where descricao like :nome'
+      'order by descricao')
+    Left = 128
+    Top = 88
+    object qryConsultaNomeProdutocodigo_barras: TStringField
+      DisplayLabel = 'C'#211'DIGO DE BARRAS'
+      FieldName = 'codigo_barras'
+    end
+    object qryConsultaNomeProdutodescricao: TStringField
+      DisplayLabel = 'DESCRI'#199#195'O DO PRODUTO'
+      FieldName = 'descricao'
+      Size = 100
+    end
+    object qryConsultaNomeProdutopreco_venda: TBCDField
+      DisplayLabel = 'PRE'#199'O DO PRODUTO'
+      FieldName = 'preco_venda'
+      DisplayFormat = 'R$ #,##0.00'
+      Precision = 10
+      Size = 2
+    end
+  end
+end

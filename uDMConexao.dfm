@@ -45,7 +45,7 @@ object dmConexao: TdmConexao
         Value = Null
       end>
     SQL.Strings = (
-      'select codigo_barras, descricao, preco_venda'
+      'select codigo_barras, descricao, preco_venda, caminho_imagem'
       'from PDV_Produtos'
       'where descricao like :nome'
       'order by descricao')
@@ -66,6 +66,10 @@ object dmConexao: TdmConexao
       DisplayFormat = 'R$ #,##0.00'
       Precision = 10
       Size = 2
+    end
+    object qryConsultaNomeProdutocaminho_imagem: TStringField
+      FieldName = 'caminho_imagem'
+      Size = 255
     end
   end
 end
