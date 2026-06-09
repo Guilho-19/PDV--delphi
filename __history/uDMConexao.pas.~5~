@@ -11,9 +11,6 @@ type
     qryOperadores: TADOQuery;
     qryProdutos: TADOQuery;
     qryConsultaNomeProduto: TADOQuery;
-    qryConsultaNomeProdutocodigo_barras: TStringField;
-    qryConsultaNomeProdutodescricao: TStringField;
-    qryConsultaNomeProdutopreco_venda: TBCDField;
   private
     { Private declarations }
   public

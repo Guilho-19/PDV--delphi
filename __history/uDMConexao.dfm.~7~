@@ -2,7 +2,6 @@ object dmConexao: TdmConexao
   Height = 480
   Width = 640
   object conexaoBanco: TADOConnection
-    Connected = True
     ConnectionString = 
       'Provider=MSOLEDBSQL.1;Integrated Security=SSPI;Persist Security ' +
       'Info=False;User ID="";Initial Catalog=PDV;Data Source="";Use Pro' +
@@ -33,7 +32,6 @@ object dmConexao: TdmConexao
   end
   object qryConsultaNomeProduto: TADOQuery
     Connection = conexaoBanco
-    CursorType = ctStatic
     Parameters = <
       item
         Name = 'nome'
@@ -51,21 +49,5 @@ object dmConexao: TdmConexao
       'order by descricao')
     Left = 128
     Top = 88
-    object qryConsultaNomeProdutocodigo_barras: TStringField
-      DisplayLabel = 'C'#211'DIGO DE BARRAS'
-      FieldName = 'codigo_barras'
-    end
-    object qryConsultaNomeProdutodescricao: TStringField
-      DisplayLabel = 'DESCRI'#199#195'O DO PRODUTO'
-      FieldName = 'descricao'
-      Size = 100
-    end
-    object qryConsultaNomeProdutopreco_venda: TBCDField
-      DisplayLabel = 'PRE'#199'O DO PRODUTO'
-      FieldName = 'preco_venda'
-      DisplayFormat = 'R$ #,##0.00'
-      Precision = 10
-      Size = 2
-    end
   end
 end

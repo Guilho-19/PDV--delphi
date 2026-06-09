@@ -132,6 +132,10 @@
             <Form>frmPDV</Form>
             <FormType>dfm</FormType>
         </DCCReference>
+        <DCCReference Include="uBuscaNomeProduto.pas">
+            <Form>frmBuscaNomeProduto</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
         <BuildConfiguration Include="Base">
             <Key>Base</Key>
         </BuildConfiguration>
