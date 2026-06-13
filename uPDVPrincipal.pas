@@ -40,6 +40,7 @@ type
     procedure AtualizaCabecalho(ANomeOperador: string; AStatusCaixa: string);
     procedure BuscaOperador(AIdOperador: Integer);
     procedure InsereItemFita(ACodigo, ADescricao: string; AQtde, AValorUnit, ADesconto: Double);
+    procedure CancelarItemFita;
     procedure BuscarProduto(ACodigoDeBarras: string);
     function SoTemNumeros(ATexto: string): Boolean;
   public
@@ -157,6 +158,74 @@ begin
   dmConexao.qryProdutos.Close;
 end;
 
+procedure TfrmPDV.CancelarItemFita;
+var
+  SItem: string;
+  NumItem, i, j, LinhaLocalizada: Integer;
+  ValorSubtotal: Double;
+  TextoSubtotal: string;
+begin
+  SItem := InputBox('Cancelamento de Item', 'Digite o número do Item que deseja cancelar: ', '');
+
+  if Trim(SItem) = '' then Exit;
+
+  NumItem := StrToIntDef(SItem, 0);
+  if NumItem <= 0 then
+  begin
+    ShowMessage('Número de item inválido!');
+    Exit;
+  end;
+
+  LinhaLocalizada := -1;
+
+  for i := 1 to gridItens.RowCount - 1 do
+  begin
+    if gridItens.Cells[0, i] = IntToStr(NumItem) then
+    begin
+      LinhaLocalizada := i;
+      Break;
+    end;
+  end;
+
+  if LinhaLocalizada = -1 then
+  begin
+    ShowMessage('Item não encontrado na fita do caixa.');
+    Exit;
+  end;
+
+  TextoSubtotal := gridItens.Cells[6, LinhaLocalizada];
+  TextoSubtotal := StringReplace(TextoSubtotal, '.', '', [rfReplaceAll]);
+  ValorSubtotal := StrToFloatDef(TextoSubtotal, 0.0);
+
+  FValorTotalVenda := FValorTotalVenda - ValorSubtotal;
+  lblTotalVenda.Caption := 'TOTAL R$ ' + FormatFloat('#,##0.00', FValorTotalVenda);
+
+  if gridItens.RowCount > 2 then
+  begin
+    for i := LinhaLocalizada to gridItens.RowCount - 2 do
+    begin
+      for j := 0 to gridItens.ColCount - 1 do
+      begin
+        gridItens.Cells[j, i] := gridItens.Cells[j, i + 1];
+      end;
+    end;
+    gridItens.RowCount := gridItens.RowCount - 1;
+  end
+  else
+  begin
+    for j := 0 to gridItens.ColCount - 1 do
+      gridItens.Cells[j, 1] := '';
+  end;
+
+  for i := 1 to gridItens.ColCount - 1 do
+  begin
+    if gridItens.Cells[1, i] <> '' then
+      gridItens.Cells[0, i] := IntToStr(i);
+  end;
+
+  gridItens.Row := gridItens.RowCount - 1;
+end;
+
 procedure TfrmPDV.edtBuscaProdutoKeyPress(Sender: TObject; var Key: Char);
 var
   TextoDigitado: string;
@@ -202,6 +271,11 @@ begin
   begin
     edtQuantidade.SetFocus;
     edtQuantidade.SelectAll;
+  end;
+
+  if Key = VK_F5 then
+  begin
+    CancelarItemFita;
   end;
 end;
 
