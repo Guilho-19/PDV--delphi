@@ -273,6 +273,38 @@ begin
     edtQuantidade.SelectAll;
   end;
 
+  if Key = VK_F3 then
+  begin
+    if FValorTotalVenda <= 0 then
+    begin
+      ShowMessage('Não há itens registrados para finalizar a venda.');
+      Exit;
+    end;
+
+    frmPagamento.InicializarJanela(FValorTotalVenda);
+
+    if frmPagamento.ShowModal = mrOk then
+    begin
+      gridItens.RowCount := 2;
+      gridItens.Cells[0, 1] := '';
+      gridItens.Cells[1, 1] := '';
+      gridItens.Cells[2, 1] := '';
+      gridItens.Cells[3, 1] := '';
+      gridItens.Cells[4, 1] := '';
+      gridItens.Cells[5, 1] := '';
+      gridItens.Cells[6, 1] := '';
+
+      FValorTotalVenda := 0.00;
+      lblTotalvenda.Caption := 'TOTAL R$ 0,00';
+      lblNomeProdutoAtual.Caption := '...';
+      lblValorUnitarioAtual.Caption := '0,00';
+      lblQuantidadeAtual.Caption := '1,000';
+      imgProduto.Picture := nil;
+
+      ShowMessage('Venda finalizada com sucesso!');
+    end;
+  end;
+
   if Key = VK_F5 then
   begin
     CancelarItemFita;

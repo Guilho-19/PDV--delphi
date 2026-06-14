@@ -1,0 +1,53 @@
+unit uPagamento;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.Grids, Vcl.StdCtrls;
+
+type
+  TfrmPagamento = class(TForm)
+    lblTotalVenda: TLabel;
+    lblValorRestante: TLabel;
+    lblTroco: TLabel;
+    edtValorPgto: TEdit;
+    gridPagamentos: TStringGrid;
+    lblLegendaPgto: TLabel;
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+    FTotalVendaPgto: Double;
+    FValorRestantePgto: Double;
+    FValorTrocoPgto: Double;
+    procedure InicializarJanela(AValorTotal: Double);
+    procedure AdicionarPagamento(AForma: string; AValor: Double);
+  end;
+
+var
+  frmPagamento: TfrmPagamento;
+
+implementation
+
+{$R *.dfm}
+
+{ TfrmPagamento }
+
+procedure TfrmPagamento.AdicionarPagamento(AForma: string; AValor: Double);
+begin
+
+end;
+
+procedure TfrmPagamento.InicializarJanela(AValorTotal: Double);
+begin
+  FTotalVendaPgto := AValorTotal;
+  FValorRestantePgto := AValorTotal;
+  FValorTrocoPgto := 0.00;
+
+  lblTotalVenda.Caption := 'TOTAL: R$ ' + FormatFloat('#,##0.00', FTotalVendaPgto);
+  lblValorRestante.Caption := 'RESTANTE: R$ ' + FormatFloat('#,##0.00', FValorRestantePgto);
+  lblTroco.Caption := 'TROCO: R$ 0,00';
+end;
+
+end.
