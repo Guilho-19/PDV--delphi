@@ -4,16 +4,21 @@ interface
 
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
-  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.Grids, Vcl.StdCtrls;
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.Grids, Vcl.StdCtrls, Vcl.ExtCtrls;
 
 type
   TfrmPagamento = class(TForm)
-    lblTotalVenda: TLabel;
-    lblValorRestante: TLabel;
-    lblTroco: TLabel;
-    edtValorPgto: TEdit;
-    gridPagamentos: TStringGrid;
+    pnlTopPgto: TPanel;
+    lblTituloPagamentoVenda: TLabel;
+    pnlRodapePgto: TPanel;
     lblLegendaPgto: TLabel;
+    Panel2: TPanel;
+    gridPagamentos: TStringGrid;
+    Panel1: TPanel;
+    edtValorPgto: TEdit;
+    lblTotalVenda: TLabel;
+    lblTroco: TLabel;
+    lblValorRestante: TLabel;
     procedure FormKeyDown(Sender: TObject; var Key: Word; Shift: TShiftState);
     procedure FormShow(Sender: TObject);
   private
@@ -123,6 +128,9 @@ end;
 
 procedure TfrmPagamento.InicializarJanela(AValorTotal: Double);
 begin
+  gridPagamentos.ColWidths[0] := 180;
+  gridPagamentos.ColWidths[1] := 120;
+
   FTotalVendaPgto := AValorTotal;
   FValorRestantePgto := AValorTotal;
   FValorTrocoPgto := 0.00;
