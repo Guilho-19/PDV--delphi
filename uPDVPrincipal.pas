@@ -54,7 +54,7 @@ implementation
 
 {$R *.dfm}
 
-uses uDMConexao, uBuscaNomeProduto;
+uses uDMConexao, uBuscaNomeProduto, uPagamento;
 
 { TfrmPDV }
 
