@@ -24,8 +24,6 @@ object frmPagamento: TfrmPagamento
     Align = alTop
     BevelOuter = bvNone
     TabOrder = 0
-    ExplicitLeft = -1
-    ExplicitTop = -5
     object lblTituloPagamentoVenda: TLabel
       Left = 0
       Top = 0
@@ -41,8 +39,6 @@ object frmPagamento: TfrmPagamento
       Font.Style = [fsBold]
       ParentFont = False
       Layout = tlCenter
-      ExplicitLeft = 240
-      ExplicitTop = 1
       ExplicitWidth = 246
       ExplicitHeight = 30
     end
@@ -55,9 +51,6 @@ object frmPagamento: TfrmPagamento
     Align = alBottom
     BevelOuter = bvNone
     TabOrder = 1
-    ExplicitLeft = 8
-    ExplicitTop = 89
-    ExplicitWidth = 1206
     object lblLegendaPgto: TLabel
       Left = 0
       Top = 0
@@ -69,8 +62,6 @@ object frmPagamento: TfrmPagamento
         '[ F1 ] DINHEIRO   [ F2 ] CART'#195'O DE CR'#201'DITO   [ F3 ] CART'#195'O DE D'#201 +
         'BITO   [ F4 ] PIX'
       Layout = tlCenter
-      ExplicitLeft = 152
-      ExplicitTop = 18
       ExplicitWidth = 430
       ExplicitHeight = 15
     end
@@ -82,7 +73,6 @@ object frmPagamento: TfrmPagamento
     Height = 519
     Align = alRight
     TabOrder = 2
-    ExplicitLeft = 611
     object gridPagamentos: TStringGrid
       Left = 1
       Top = 1
@@ -90,10 +80,6 @@ object frmPagamento: TfrmPagamento
       Height = 517
       Align = alClient
       TabOrder = 0
-      ExplicitLeft = 14
-      ExplicitTop = 208
-      ExplicitWidth = 320
-      ExplicitHeight = 120
     end
   end
   object Panel1: TPanel
@@ -104,54 +90,79 @@ object frmPagamento: TfrmPagamento
     Align = alClient
     BevelOuter = bvNone
     TabOrder = 3
-    ExplicitLeft = 88
-    ExplicitTop = 304
-    ExplicitWidth = 185
-    ExplicitHeight = 41
     object lblTotalVenda: TLabel
-      Left = 16
-      Top = 32
-      Width = 204
+      AlignWithMargins = True
+      Left = 3
+      Top = 3
+      Width = 335
       Height = 45
-      Caption = 'lblTotalVenda'
+      Margins.Right = 15
+      Margins.Bottom = 20
+      Align = alTop
+      Alignment = taRightJustify
+      Caption = 'Total Venda'
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clWindowText
       Font.Height = -32
       Font.Name = 'Segoe UI'
       Font.Style = [fsBold]
       ParentFont = False
+      ExplicitLeft = 16
+      ExplicitTop = 32
+      ExplicitWidth = 175
     end
     object lblTroco: TLabel
-      Left = 16
-      Top = 155
-      Width = 123
+      AlignWithMargins = True
+      Left = 3
+      Top = 139
+      Width = 335
       Height = 45
-      Caption = 'lblTroco'
+      Margins.Right = 15
+      Margins.Bottom = 20
+      Align = alTop
+      Alignment = taRightJustify
+      Caption = 'Troco'
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clWindowText
       Font.Height = -32
       Font.Name = 'Segoe UI'
       Font.Style = [fsBold]
       ParentFont = False
+      ExplicitLeft = -5
+      ExplicitTop = 90
+      ExplicitWidth = 353
     end
     object lblValorRestante: TLabel
-      Left = 16
-      Top = 96
-      Width = 244
+      AlignWithMargins = True
+      Left = 3
+      Top = 71
+      Width = 335
       Height = 45
-      Caption = 'lblValorRestante'
+      Margins.Right = 15
+      Margins.Bottom = 20
+      Align = alTop
+      Alignment = taRightJustify
+      Caption = 'Valor Restante'
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clWindowText
       Font.Height = -32
       Font.Name = 'Segoe UI'
       Font.Style = [fsBold]
       ParentFont = False
+      ExplicitLeft = 0
+      ExplicitTop = 18
+      ExplicitWidth = 353
     end
     object edtValorPgto: TEdit
-      Left = 16
-      Top = 240
-      Width = 233
+      AlignWithMargins = True
+      Left = 3
+      Top = 207
+      Width = 335
       Height = 53
+      Margins.Right = 15
+      Margins.Bottom = 30
+      Align = alTop
+      Alignment = taRightJustify
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clWindowText
       Font.Height = -32
@@ -159,7 +170,9 @@ object frmPagamento: TfrmPagamento
       Font.Style = [fsBold]
       ParentFont = False
       TabOrder = 0
-      Text = 'edtValorPgto'
+      Text = 'Valor Pgto'
+      ExplicitLeft = 56
+      ExplicitWidth = 282
     end
   end
 end
