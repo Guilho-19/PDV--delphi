@@ -286,6 +286,9 @@ begin
 
     if frmPagamento.ShowModal = mrOk then
     begin
+      GravarVenda(frmPagamento.FTotalVendaPgto,
+        (frmPagamento.FTotalVendaPgto + frmPagamento.FValorTrocoPgto), frmPagamento.FValorTrocoPgto);
+
       gridItens.RowCount := 2;
       gridItens.Cells[0, 1] := '';
       gridItens.Cells[1, 1] := '';
@@ -350,7 +353,7 @@ begin
   dmConexao.conexaoBanco.BeginTrans;
 
   try
-    dmConexao.qryGravarVenda.SQL.Add('insert into PDV_Vendas (valor_total valor_pago, valor_troco, status_venda) ');
+    dmConexao.qryGravarVenda.SQL.Add('insert into PDV_Vendas (valor_total, valor_pago, valor_troco, status_venda) ');
     dmConexao.qryGravarVenda.SQL.Add('values (:total, :pago, :troco, :status); ');
     dmConexao.qryGravarVenda.SQL.Add('select scope_identity() as IdGerado;');
 
@@ -365,7 +368,7 @@ begin
 
     dmConexao.qryGravarVenda.Close;
     dmConexao.qryGravarVenda.SQL.Clear;
-    dmConexao.qryGravarVenda.SQL.Add('insert into PDV_ItensVendas (id_venda, codigo_barras, quantidade, valor_unitario, valor_subtotal )');
+    dmConexao.qryGravarVenda.SQL.Add('insert into PDV_VendasItens (id_venda, codigo_barras, quantidade, valor_unitario, valor_subtotal )');
     dmConexao.qryGravarVenda.SQL.Add('values (:id_venda, :codigo, :qtde, :unitario, :subtotal)');
 
     for i := 1 to gridItens.RowCount - 1 do

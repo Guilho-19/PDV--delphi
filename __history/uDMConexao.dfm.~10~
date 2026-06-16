@@ -92,5 +92,25 @@ object dmConexao: TdmConexao
       'order by descricao')
     Left = 176
     Top = 88
+    object StringField1: TStringField
+      DisplayLabel = 'C'#211'DIGO DE BARRAS'
+      FieldName = 'codigo_barras'
+    end
+    object StringField2: TStringField
+      DisplayLabel = 'DESCRI'#199#195'O DO PRODUTO'
+      FieldName = 'descricao'
+      Size = 100
+    end
+    object BCDField1: TBCDField
+      DisplayLabel = 'PRE'#199'O DO PRODUTO'
+      FieldName = 'preco_venda'
+      DisplayFormat = 'R$ #,##0.00'
+      Precision = 10
+      Size = 2
+    end
+    object StringField3: TStringField
+      FieldName = 'caminho_imagem'
+      Size = 255
+    end
   end
 end
