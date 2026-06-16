@@ -15,11 +15,6 @@ type
     qryConsultaNomeProdutodescricao: TStringField;
     qryConsultaNomeProdutopreco_venda: TBCDField;
     qryConsultaNomeProdutocaminho_imagem: TStringField;
-    qryGravarVenda: TADOQuery;
-    StringField1: TStringField;
-    StringField2: TStringField;
-    BCDField1: TBCDField;
-    StringField3: TStringField;
   private
     { Private declarations }
   public

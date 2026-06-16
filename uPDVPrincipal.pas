@@ -42,6 +42,7 @@ type
     procedure InsereItemFita(ACodigo, ADescricao: string; AQtde, AValorUnit, ADesconto: Double);
     procedure CancelarItemFita;
     procedure BuscarProduto(ACodigoDeBarras: string);
+    procedure GravarVenda(AValorTotal, AValorPago, AValorTroco: Double);
     function SoTemNumeros(ATexto: string): Boolean;
   public
     { Public declarations }
@@ -334,6 +335,67 @@ begin
   gridItens.ColWidths[5] := 90;
   gridItens.ColWidths[6] := 120;
 
+end;
+
+procedure TfrmPDV.GravarVenda(AValorTotal, AValorPago, AValorTroco: Double);
+var
+  IdVenda: Integer;
+  i: Integer;
+  Codigo: string;
+  Qtde, ValorUnit, Subtotal: Double;
+begin
+  dmConexao.qryGravarVenda.Close;
+  dmConexao.qryGravarVenda.SQL.Clear;
+
+  dmConexao.conexaoBanco.BeginTrans;
+
+  try
+    dmConexao.qryGravarVenda.SQL.Add('insert into PDV_Vendas (valor_total valor_pago, valor_troco, status_venda) ');
+    dmConexao.qryGravarVenda.SQL.Add('values (:total, :pago, :troco, :status); ');
+    dmConexao.qryGravarVenda.SQL.Add('select scope_identity() as IdGerado;');
+
+    dmConexao.qryGravarVenda.Parameters.ParamByName('total').Value := AValorTotal;
+    dmConexao.qryGravarVenda.Parameters.ParamByName('pago').Value := AValorPago;
+    dmConexao.qryGravarVenda.Parameters.ParamByName('troco').Value := AValorTroco;
+    dmConexao.qryGravarVenda.Parameters.ParamByName('status').Value := 'F';
+
+    dmConexao.qryGravarVenda.Open;
+
+    idVenda := dmConexao.qryGravarVenda.FieldByName('IdGerado').AsInteger;
+
+    dmConexao.qryGravarVenda.Close;
+    dmConexao.qryGravarVenda.SQL.Clear;
+    dmConexao.qryGravarVenda.SQL.Add('insert into PDV_ItensVendas (id_venda, codigo_barras, quantidade, valor_unitario, valor_subtotal )');
+    dmConexao.qryGravarVenda.SQL.Add('values (:id_venda, :codigo, :qtde, :unitario, :subtotal)');
+
+    for i := 1 to gridItens.RowCount - 1 do
+    begin
+      if gridItens.Cells[1, i] <> '' then
+      begin
+        Codigo := gridItens.Cells[1, i];
+        Qtde := StrToFloatDef(gridItens.Cells[4, i], 1);
+        ValorUnit := StrToFloatDef(StringReplace(gridItens.Cells[5, i], '.', '', [rfReplaceAll]), 0);
+        SubTotal := StrToFloatDef(StringReplace(gridItens.Cells[6, i], '.', '', [rfReplaceAll]), 0);
+
+        dmConexao.qryGravarVenda.Parameters.ParamByName('id_venda').Value := IdVenda;
+        dmConexao.qryGravarVenda.Parameters.ParamByName('codigo').Value := Codigo;
+        dmConexao.qryGravarVenda.Parameters.ParamByName('qtde').Value := Qtde;
+        dmConexao.qryGravarVenda.Parameters.ParamByName('unitario').Value := ValorUnit;
+        dmConexao.qryGravarVenda.Parameters.ParamByName('subtotal').Value := Subtotal;
+
+        dmConexao.qryGravarVenda.ExecSQL;
+      end;
+    end;
+
+    dmConexao.ConexaoBanco.CommitTrans;
+
+    except
+      on E: Exception do
+      begin
+        dmConexao.conexaoBanco.RollbackTrans;
+        raise Exception.Create('Erro ao gravar a venda no banco de dados: ' + E.message);
+      end;
+  end;
 end;
 
 procedure TfrmPDV.InsereItemFita(ACodigo, ADescricao: string; AQtde, AValorUnit,
