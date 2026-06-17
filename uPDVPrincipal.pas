@@ -345,7 +345,7 @@ var
   IdVenda: Integer;
   i: Integer;
   Codigo: string;
-  Qtde, ValorUnit, Subtotal: Double;
+  Qtde, ValorUnit, Subtotal, ValorPgtoDinamico: Double;
 begin
   dmConexao.qryGravarVenda.Close;
   dmConexao.qryGravarVenda.SQL.Clear;
@@ -363,7 +363,6 @@ begin
     dmConexao.qryGravarVenda.Parameters.ParamByName('status').Value := 'F';
 
     dmConexao.qryGravarVenda.Open;
-
     idVenda := dmConexao.qryGravarVenda.FieldByName('IdGerado').AsInteger;
 
     dmConexao.qryGravarVenda.Close;
@@ -376,8 +375,8 @@ begin
       if gridItens.Cells[1, i] <> '' then
       begin
         Codigo := gridItens.Cells[1, i];
-        Qtde := StrToFloatDef(gridItens.Cells[4, i], 1);
-        ValorUnit := StrToFloatDef(StringReplace(gridItens.Cells[5, i], '.', '', [rfReplaceAll]), 0);
+        Qtde := StrToFloatDef(gridItens.Cells[3, i], 1);
+        ValorUnit := StrToFloatDef(StringReplace(gridItens.Cells[4, i], '.', '', [rfReplaceAll]), 0);
         SubTotal := StrToFloatDef(StringReplace(gridItens.Cells[6, i], '.', '', [rfReplaceAll]), 0);
 
         dmConexao.qryGravarVenda.Parameters.ParamByName('id_venda').Value := IdVenda;
@@ -385,6 +384,25 @@ begin
         dmConexao.qryGravarVenda.Parameters.ParamByName('qtde').Value := Qtde;
         dmConexao.qryGravarVenda.Parameters.ParamByName('unitario').Value := ValorUnit;
         dmConexao.qryGravarVenda.Parameters.ParamByName('subtotal').Value := Subtotal;
+
+        dmConexao.qryGravarVenda.ExecSQL;
+      end;
+    end;
+
+    dmConexao.qryGravarVenda.Close;
+    dmConexao.qryGravarVenda.SQL.Clear;
+    dmConexao.qryGravarVenda.SQL.Add('insert into PDV_VendasPagamento (id_venda, forma_pagamento, valor_pago)');
+    dmConexao.qryGravarVenda.SQL.Add('values (:id_venda, :forma, :valor)');
+
+    for i := 1 to frmPagamento.gridPagamentos.RowCount - 1 do
+    begin
+      if frmPagamento.gridPagamentos.Cells[0, i] <> '' then
+      begin
+        dmConexao.qryGravarVenda.Parameters.ParamByName('id_venda').Value := IdVenda;
+        dmConexao.qryGravarVenda.Parameters.ParamByName('forma').Value := frmPagamento.gridPagamentos.Cells[0, i];
+
+        ValorPgtoDinamico := StrToFloatDef(StringReplace(frmPagamento.gridPagamentos.Cells[1, i], '.', '', [rfReplaceAll]), 0);
+        dmConexao.qryGravarVenda.Parameters.ParamByName('valor').Value := ValorPgtoDinamico;
 
         dmConexao.qryGravarVenda.ExecSQL;
       end;
