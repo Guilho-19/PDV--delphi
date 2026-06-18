@@ -27,8 +27,8 @@ object frmPagamento: TfrmPagamento
     object lblTituloPagamentoVenda: TLabel
       Left = 0
       Top = 0
-      Width = 703
-      Height = 41
+      Width = 246
+      Height = 30
       Align = alClient
       Alignment = taCenter
       Caption = 'PAGAMENTO DA VENDA'
@@ -39,8 +39,6 @@ object frmPagamento: TfrmPagamento
       Font.Style = [fsBold]
       ParentFont = False
       Layout = tlCenter
-      ExplicitWidth = 246
-      ExplicitHeight = 30
     end
   end
   object pnlRodapePgto: TPanel
@@ -54,16 +52,14 @@ object frmPagamento: TfrmPagamento
     object lblLegendaPgto: TLabel
       Left = 0
       Top = 0
-      Width = 703
-      Height = 41
+      Width = 430
+      Height = 15
       Align = alClient
       Alignment = taCenter
       Caption = 
         '[ F1 ] DINHEIRO   [ F2 ] CART'#195'O DE CR'#201'DITO   [ F3 ] CART'#195'O DE D'#201 +
         'BITO   [ F4 ] PIX'
       Layout = tlCenter
-      ExplicitWidth = 430
-      ExplicitHeight = 15
     end
   end
   object Panel2: TPanel
@@ -92,9 +88,9 @@ object frmPagamento: TfrmPagamento
     TabOrder = 3
     object lblTotalVenda: TLabel
       AlignWithMargins = True
-      Left = 3
+      Left = 163
       Top = 3
-      Width = 335
+      Width = 175
       Height = 45
       Margins.Right = 15
       Margins.Bottom = 20
@@ -107,15 +103,12 @@ object frmPagamento: TfrmPagamento
       Font.Name = 'Segoe UI'
       Font.Style = [fsBold]
       ParentFont = False
-      ExplicitLeft = 16
-      ExplicitTop = 32
-      ExplicitWidth = 175
     end
     object lblTroco: TLabel
       AlignWithMargins = True
-      Left = 3
+      Left = 253
       Top = 139
-      Width = 335
+      Width = 85
       Height = 45
       Margins.Right = 15
       Margins.Bottom = 20
@@ -128,15 +121,12 @@ object frmPagamento: TfrmPagamento
       Font.Name = 'Segoe UI'
       Font.Style = [fsBold]
       ParentFont = False
-      ExplicitLeft = -5
-      ExplicitTop = 90
-      ExplicitWidth = 353
     end
     object lblValorRestante: TLabel
       AlignWithMargins = True
-      Left = 3
+      Left = 123
       Top = 71
-      Width = 335
+      Width = 215
       Height = 45
       Margins.Right = 15
       Margins.Bottom = 20
@@ -149,9 +139,6 @@ object frmPagamento: TfrmPagamento
       Font.Name = 'Segoe UI'
       Font.Style = [fsBold]
       ParentFont = False
-      ExplicitLeft = 0
-      ExplicitTop = 18
-      ExplicitWidth = 353
     end
     object edtValorPgto: TEdit
       AlignWithMargins = True

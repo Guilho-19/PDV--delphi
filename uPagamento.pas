@@ -127,6 +127,8 @@ begin
 end;
 
 procedure TfrmPagamento.InicializarJanela(AValorTotal: Double);
+var
+  i: Integer;
 begin
   gridPagamentos.ColWidths[0] := 180;
   gridPagamentos.ColWidths[1] := 120;
@@ -138,6 +140,12 @@ begin
   lblTotalVenda.Caption := 'TOTAL: R$ ' + FormatFloat('#,##0.00', FTotalVendaPgto);
   lblValorRestante.Caption := 'RESTANTE: R$ ' + FormatFloat('#,##0.00', FValorRestantePgto);
   lblTroco.Caption := 'TROCO: R$ 0,00';
+
+  for i := 1 to gridPagamentos.RowCount - 1 do
+  begin
+    gridPagamentos.Cells[0, i] := '';
+    gridPagamentos.Cells[1, i] := '';
+  end;
 
   gridPagamentos.RowCount := 1;
   gridPagamentos.Cells[0, 0] := 'Forma Pagto';
