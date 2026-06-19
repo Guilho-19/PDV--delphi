@@ -10,6 +10,7 @@ type
   TfrmCupom = class(TForm)
     memCupom: TMemo;
     Button1: TButton;
+    procedure Button1Click(Sender: TObject);
   private
     { Private declarations }
   public
@@ -27,6 +28,11 @@ implementation
 uses uDMConexao;
 
 { TfrmCupom }
+
+procedure TfrmCupom.Button1Click(Sender: TObject);
+begin
+  Close;
+end;
 
 procedure TfrmCupom.GerarCupom(AIdVenda: Integer);
 var

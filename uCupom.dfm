@@ -17,7 +17,7 @@ object frmCupom: TfrmCupom
     Left = 0
     Top = 0
     Width = 344
-    Height = 561
+    Height = 536
     Align = alClient
     Font.Charset = ANSI_CHARSET
     Font.Color = clWindowText
@@ -29,13 +29,19 @@ object frmCupom: TfrmCupom
     ParentFont = False
     ReadOnly = True
     TabOrder = 0
+    ExplicitHeight = 561
   end
   object Button1: TButton
-    Left = 261
-    Top = 528
-    Width = 75
+    Left = 0
+    Top = 536
+    Width = 344
     Height = 25
+    Align = alBottom
     Caption = 'Fechar'
     TabOrder = 1
+    OnClick = Button1Click
+    ExplicitLeft = 261
+    ExplicitTop = 528
+    ExplicitWidth = 75
   end
 end
