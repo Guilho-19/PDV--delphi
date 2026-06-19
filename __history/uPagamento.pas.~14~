@@ -4,16 +4,23 @@ interface
 
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
-  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.Grids, Vcl.StdCtrls;
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.Grids, Vcl.StdCtrls, Vcl.ExtCtrls;
 
 type
   TfrmPagamento = class(TForm)
-    lblTotalVenda: TLabel;
-    lblValorRestante: TLabel;
-    lblTroco: TLabel;
-    edtValorPgto: TEdit;
-    gridPagamentos: TStringGrid;
+    pnlTopPgto: TPanel;
+    lblTituloPagamentoVenda: TLabel;
+    pnlRodapePgto: TPanel;
     lblLegendaPgto: TLabel;
+    Panel2: TPanel;
+    gridPagamentos: TStringGrid;
+    Panel1: TPanel;
+    edtValorPgto: TEdit;
+    lblTotalVenda: TLabel;
+    lblTroco: TLabel;
+    lblValorRestante: TLabel;
+    procedure FormKeyDown(Sender: TObject; var Key: Word; Shift: TShiftState);
+    procedure FormShow(Sender: TObject);
   private
     { Private declarations }
   public
@@ -23,6 +30,7 @@ type
     FValorTrocoPgto: Double;
     procedure InicializarJanela(AValorTotal: Double);
     procedure AdicionarPagamento(AForma: string; AValor: Double);
+    function CleanValor(ATexto: string): string;
   end;
 
 var
@@ -80,8 +88,51 @@ begin
 
 end;
 
-procedure TfrmPagamento.InicializarJanela(AValorTotal: Double);
+function TfrmPagamento.CleanValor(ATexto: string): string;
 begin
+  Result := Stringreplace(ATexto, 'R$', '', [rfReplaceAll]);
+  Result := Trim(Result);
+end;
+
+procedure TfrmPagamento.FormKeyDown(Sender: TObject; var Key: Word;
+  Shift: TShiftState);
+var
+  ValorDigitado: Double;
+begin
+  ValorDigitado := StrToFloatDef(CleanValor(edtValorPgto.Text), 0.00);
+
+  case Key of
+    VK_F1: begin
+      AdicionarPagamento('DINHEIRO', ValorDigitado);
+    end;
+    VK_F2: begin
+      AdicionarPagamento('CARTÃO CRÉDITO', ValorDigitado);
+    end;
+    VK_F3: begin
+      AdicionarPagamento('CARTÃO DÉBITO', ValorDigitado);
+    end;
+    VK_F4: begin
+      AdicionarPagamento('PIX', ValorDigitado);
+    end;
+    VK_ESCAPE: begin
+      ModalResult := mrCancel;
+    end;
+  end;
+end;
+
+procedure TfrmPagamento.FormShow(Sender: TObject);
+begin
+  edtValorPgto.SetFocus;
+  edtValorPgto.SelectAll;
+end;
+
+procedure TfrmPagamento.InicializarJanela(AValorTotal: Double);
+var
+  i: Integer;
+begin
+  gridPagamentos.ColWidths[0] := 180;
+  gridPagamentos.ColWidths[1] := 120;
+
   FTotalVendaPgto := AValorTotal;
   FValorRestantePgto := AValorTotal;
   FValorTrocoPgto := 0.00;
@@ -90,13 +141,17 @@ begin
   lblValorRestante.Caption := 'RESTANTE: R$ ' + FormatFloat('#,##0.00', FValorRestantePgto);
   lblTroco.Caption := 'TROCO: R$ 0,00';
 
+  for i := 1 to gridPagamentos.RowCount - 1 do
+  begin
+    gridPagamentos.Cells[0, i] := '';
+    gridPagamentos.Cells[1, i] := '';
+  end;
+
   gridPagamentos.RowCount := 1;
   gridPagamentos.Cells[0, 0] := 'Forma Pagto';
   gridPagamentos.Cells[1, 0] := 'Valor (R$)';
 
   edtValorPgto.Text := FormatFloat('0.00', FValorRestantePgto);
-  edtValorPgto.SetFocus;
-  edtValorPgto.SelectAll;
 end;
 
 end.

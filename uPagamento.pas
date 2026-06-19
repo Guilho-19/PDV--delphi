@@ -75,8 +75,10 @@ begin
   lblValorRestante.Caption := 'RESTANTE: R$ ' + FormatFloat('#,##0.00', FValorRestantePgto);
   lblTroco.Caption := 'TROCO: R$ ' + FormatFloat('#,##0.00', FValorTrocoPgto);
 
-  if FValorRestantePgto <= 0 then
+  if FValorRestantePgto <= 0.01 then
   begin
+    FValorRestantePgto := 0;
+    FValorTrocoPgto := Abs(FValorRestantePgto);
     ModalResult := mrOk;
   end
   else
