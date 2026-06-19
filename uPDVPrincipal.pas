@@ -294,6 +294,7 @@ begin
       begin
         frmCupom.GerarCupom(VendaGeradaID);
         frmCupom.ShowModal;
+        frmCupom.ImprimirCupom;
       end;
 
       gridItens.RowCount := 2;

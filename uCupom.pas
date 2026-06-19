@@ -16,6 +16,7 @@ type
   public
     { Public declarations }
     procedure GerarCupom(AIdVenda: Integer);
+    procedure ImprimirCupom;
   end;
 
 var
@@ -25,7 +26,7 @@ implementation
 
 {$R *.dfm}
 
-uses uDMConexao;
+uses uDMConexao, Printers;
 
 { TfrmCupom }
 
@@ -101,4 +102,27 @@ begin
     memCupom.Lines.Add('       OBRIGADO PELA PREFERENCIA!       ');
     memCupom.Lines.Add('========================================');
   end;
+procedure TfrmCupom.ImprimirCupom;
+var
+  ArqImpressora: TextFile;
+  i: Integer;
+begin
+  AssignPrn(ArqImpressora);
+
+  try
+    Rewrite(ArqImpressora);
+
+    Printer.Canvas.Font.Name := 'Courier New';
+    Printer.Canvas.Font.Size := 10;
+
+    for i := 0 to memCupom.Lines.Count - 1 do
+    begin
+      Writeln(ArqImpressora, memCupom.Lines[i]);
+    end;
+
+  finally
+    CloseFile(ArqImpressora);
+  end;
+end;
+
 end.

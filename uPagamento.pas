@@ -78,7 +78,6 @@ begin
   if FValorRestantePgto <= 0.01 then
   begin
     FValorRestantePgto := 0;
-    FValorTrocoPgto := Abs(FValorRestantePgto);
     ModalResult := mrOk;
   end
   else
