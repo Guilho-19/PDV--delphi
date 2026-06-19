@@ -42,7 +42,7 @@ type
     procedure InsereItemFita(ACodigo, ADescricao: string; AQtde, AValorUnit, ADesconto: Double);
     procedure CancelarItemFita;
     procedure BuscarProduto(ACodigoDeBarras: string);
-    procedure GravarVenda(AValorTotal, AValorPago, AValorTroco: Double);
+    function GravarVenda(AValorTotal, AValorPago, AValorTroco: Double): Integer;
     function SoTemNumeros(ATexto: string): Boolean;
   public
     { Public declarations }
@@ -55,7 +55,7 @@ implementation
 
 {$R *.dfm}
 
-uses uDMConexao, uBuscaNomeProduto, uPagamento;
+uses uDMConexao, uBuscaNomeProduto, uPagamento, uCupom;
 
 { TfrmPDV }
 
@@ -259,8 +259,9 @@ begin
   end;
 end;
 
-procedure TfrmPDV.FormKeyDown(Sender: TObject; var Key: Word;
-  Shift: TShiftState);
+procedure TfrmPDV.FormKeyDown(Sender: TObject; var Key: Word; Shift: TShiftState);
+var
+  VendaGeradaID: Integer;
 begin
   if Key = VK_F1 then
   begin
@@ -286,8 +287,14 @@ begin
 
     if frmPagamento.ShowModal = mrOk then
     begin
-      GravarVenda(frmPagamento.FTotalVendaPgto,
+      VendaGeradaID := GravarVenda(frmPagamento.FTotalVendaPgto,
         (frmPagamento.FTotalVendaPgto + frmPagamento.FValorTrocoPgto), frmPagamento.FValorTrocoPgto);
+
+      if VendaGeradaID > 0 then
+      begin
+        frmCupom.GerarCupom(VendaGeradaID);
+        frmCupom.ShowModal;
+      end;
 
       gridItens.RowCount := 2;
       gridItens.Cells[0, 1] := '';
@@ -340,13 +347,14 @@ begin
 
 end;
 
-procedure TfrmPDV.GravarVenda(AValorTotal, AValorPago, AValorTroco: Double);
+function TfrmPDV.GravarVenda(AValorTotal, AValorPago, AValorTroco: Double): Integer;
 var
   IdVenda: Integer;
   i: Integer;
   Codigo: string;
   Qtde, ValorUnit, Subtotal, ValorPgtoDinamico: Double;
 begin
+  Result := 0;
   dmConexao.qryGravarVenda.Close;
   dmConexao.qryGravarVenda.SQL.Clear;
 
@@ -407,6 +415,7 @@ begin
         dmConexao.qryGravarVenda.ExecSQL;
       end;
     end;
+    Result := IdVenda;
 
     dmConexao.ConexaoBanco.CommitTrans;
 

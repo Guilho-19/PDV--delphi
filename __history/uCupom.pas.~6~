@@ -1,0 +1,59 @@
+unit uCupom;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls;
+
+type
+  TfrmCupom = class(TForm)
+    memCupom: TMemo;
+    Button1: TButton;
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+    procedure GerarCupom(AIdVenda: Integer);
+  end;
+
+var
+  frmCupom: TfrmCupom;
+
+implementation
+
+{$R *.dfm}
+
+uses uDMConexao;
+
+{ TfrmCupom }
+
+procedure TfrmCupom.GerarCupom(AIdVenda: Integer);
+var
+  Linha: string;
+  ItemCont: Integer;
+begin
+  memCupom.Lines.Clear;
+
+  memCupom.Lines.Add('========================================');
+  memCupom.Lines.Add('          MERCADO CENTRAL LTDA          ');
+  memCupom.Lines.Add('      Rua Principal, 123 - Centro       ');
+  memCupom.Lines.Add('========================================');
+  memCupom.Lines.Add(Format('CUPOM ELETRONICO NR: %06d', [AIdVenda]));
+  memCupom.Lines.Add('DATA/HORA: ' + DateTimeToStr(Now));
+  memCupom.Lines.Add('----------------------------------------');
+  memCupom.Lines.Add('ITEM COD      DESCRICAO                 ');
+  memCupom.Lines.Add('     QTD  x   VL.UNIT            SUBTOTAL');
+  memCupom.Lines.Add('----------------------------------------');
+
+  dmConexao.qryGravarVenda.Close;
+  dmConexao.qryGravarVenda.SQL.Clear;
+
+  dmConexao.qryGravarVenda.SQL.Add('select i.*, p.descricao from PDV_VendasItens i');
+  dmConexao.qryGravarVenda.SQL.Add('inner join PDV_Produtos p on (p.codigo_barras = i.codigo_barras');
+  dmConexao.qryGravarVenda.SQL.Add('where i.id_venda = :id');
+  dmConexao.qryGravarVenda.Parameters.ParamByName('id').Value := AIdVenda;
+  dmConexao.qryGravarVenda.Open;
+end;
+
+end.
