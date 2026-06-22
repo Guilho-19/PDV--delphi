@@ -388,12 +388,27 @@ begin
         ValorUnit := StrToFloatDef(StringReplace(gridItens.Cells[4, i], '.', '', [rfReplaceAll]), 0);
         SubTotal := StrToFloatDef(StringReplace(gridItens.Cells[6, i], '.', '', [rfReplaceAll]), 0);
 
+        dmConexao.qryGravarVenda.Close;
+        dmConexao.qryGravarVenda.SQL.Clear;
+        dmConexao.qryGravarVenda.SQL.Add('INSERT INTO PDV_VendasItens (id_venda, codigo_barras, quantidade, valor_unitario, valor_subtotal) ');
+        dmConexao.qryGravarVenda.SQL.Add('VALUES (:id_venda, :codigo, :qtde, :unitario, :subtotal)');
+
         dmConexao.qryGravarVenda.Parameters.ParamByName('id_venda').Value := IdVenda;
         dmConexao.qryGravarVenda.Parameters.ParamByName('codigo').Value := Codigo;
         dmConexao.qryGravarVenda.Parameters.ParamByName('qtde').Value := Qtde;
         dmConexao.qryGravarVenda.Parameters.ParamByName('unitario').Value := ValorUnit;
         dmConexao.qryGravarVenda.Parameters.ParamByName('subtotal').Value := Subtotal;
 
+        dmConexao.qryGravarVenda.ExecSQL;
+
+        dmConexao.qryGravarVenda.Close;
+        dmConexao.qryGravarVenda.SQL.Clear;
+        dmConexao.qryGravarVenda.SQL.Add('update PDV_Produtos ');
+        dmConexao.qryGravarVenda.SQL.Add('set estoque = estoque - :qtde ');
+        dmConexao.qryGravarVenda.SQL.Add('where codigo_barras = :codigo') ;
+
+        dmConexao.qryGravarVenda.Parameters.ParamByName('qtde').Value := Qtde;
+        dmConexao.qryGravarVenda.Parameters.ParamByName('codigo').Value := Codigo;
         dmConexao.qryGravarVenda.ExecSQL;
       end;
     end;

@@ -42,6 +42,7 @@ type
     procedure InsereItemFita(ACodigo, ADescricao: string; AQtde, AValorUnit, ADesconto: Double);
     procedure CancelarItemFita;
     procedure BuscarProduto(ACodigoDeBarras: string);
+    function GravarVenda(AValorTotal, AValorPago, AValorTroco: Double): Integer;
     function SoTemNumeros(ATexto: string): Boolean;
   public
     { Public declarations }
@@ -54,13 +55,13 @@ implementation
 
 {$R *.dfm}
 
-uses uDMConexao, uBuscaNomeProduto, uPagamento;
+uses uDMConexao, uBuscaNomeProduto, uPagamento, uCupom;
 
 { TfrmPDV }
 
 procedure TfrmPDV.AtualizaCabecalho(ANomeOperador, AStatusCaixa: string);
 const
-  mascaraCabecalho = 'NOME LOJA / %s / %s / %s';
+  mascaraCabecalho = 'MERCADO CENTRAL LTDA / %s / %s / %s';
 var
   DataHoraAtual: string;
 begin
@@ -258,8 +259,9 @@ begin
   end;
 end;
 
-procedure TfrmPDV.FormKeyDown(Sender: TObject; var Key: Word;
-  Shift: TShiftState);
+procedure TfrmPDV.FormKeyDown(Sender: TObject; var Key: Word; Shift: TShiftState);
+var
+  VendaGeradaID: Integer;
 begin
   if Key = VK_F1 then
   begin
@@ -285,6 +287,16 @@ begin
 
     if frmPagamento.ShowModal = mrOk then
     begin
+      VendaGeradaID := GravarVenda(frmPagamento.FTotalVendaPgto,
+        (frmPagamento.FTotalVendaPgto + frmPagamento.FValorTrocoPgto), frmPagamento.FValorTrocoPgto);
+
+      if VendaGeradaID > 0 then
+      begin
+        frmCupom.GerarCupom(VendaGeradaID);
+        frmCupom.ShowModal;
+        frmCupom.ImprimirCupom;
+      end;
+
       gridItens.RowCount := 2;
       gridItens.Cells[0, 1] := '';
       gridItens.Cells[1, 1] := '';
@@ -334,6 +346,87 @@ begin
   gridItens.ColWidths[5] := 90;
   gridItens.ColWidths[6] := 120;
 
+end;
+
+function TfrmPDV.GravarVenda(AValorTotal, AValorPago, AValorTroco: Double): Integer;
+var
+  IdVenda: Integer;
+  i: Integer;
+  Codigo: string;
+  Qtde, ValorUnit, Subtotal, ValorPgtoDinamico: Double;
+begin
+  Result := 0;
+  dmConexao.qryGravarVenda.Close;
+  dmConexao.qryGravarVenda.SQL.Clear;
+
+  dmConexao.conexaoBanco.BeginTrans;
+
+  try
+    dmConexao.qryGravarVenda.SQL.Add('insert into PDV_Vendas (valor_total, valor_pago, valor_troco, status_venda) ');
+    dmConexao.qryGravarVenda.SQL.Add('values (:total, :pago, :troco, :status); ');
+    dmConexao.qryGravarVenda.SQL.Add('select scope_identity() as IdGerado;');
+
+    dmConexao.qryGravarVenda.Parameters.ParamByName('total').Value := AValorTotal;
+    dmConexao.qryGravarVenda.Parameters.ParamByName('pago').Value := AValorPago;
+    dmConexao.qryGravarVenda.Parameters.ParamByName('troco').Value := AValorTroco;
+    dmConexao.qryGravarVenda.Parameters.ParamByName('status').Value := 'F';
+
+    dmConexao.qryGravarVenda.Open;
+    idVenda := dmConexao.qryGravarVenda.FieldByName('IdGerado').AsInteger;
+
+    dmConexao.qryGravarVenda.Close;
+    dmConexao.qryGravarVenda.SQL.Clear;
+    dmConexao.qryGravarVenda.SQL.Add('insert into PDV_VendasItens (id_venda, codigo_barras, quantidade, valor_unitario, valor_subtotal )');
+    dmConexao.qryGravarVenda.SQL.Add('values (:id_venda, :codigo, :qtde, :unitario, :subtotal)');
+
+    for i := 1 to gridItens.RowCount - 1 do
+    begin
+      if gridItens.Cells[1, i] <> '' then
+      begin
+        Codigo := gridItens.Cells[1, i];
+        Qtde := StrToFloatDef(gridItens.Cells[3, i], 1);
+        ValorUnit := StrToFloatDef(StringReplace(gridItens.Cells[4, i], '.', '', [rfReplaceAll]), 0);
+        SubTotal := StrToFloatDef(StringReplace(gridItens.Cells[6, i], '.', '', [rfReplaceAll]), 0);
+
+        dmConexao.qryGravarVenda.Parameters.ParamByName('id_venda').Value := IdVenda;
+        dmConexao.qryGravarVenda.Parameters.ParamByName('codigo').Value := Codigo;
+        dmConexao.qryGravarVenda.Parameters.ParamByName('qtde').Value := Qtde;
+        dmConexao.qryGravarVenda.Parameters.ParamByName('unitario').Value := ValorUnit;
+        dmConexao.qryGravarVenda.Parameters.ParamByName('subtotal').Value := Subtotal;
+
+        dmConexao.qryGravarVenda.ExecSQL;
+      end;
+    end;
+
+    dmConexao.qryGravarVenda.Close;
+    dmConexao.qryGravarVenda.SQL.Clear;
+    dmConexao.qryGravarVenda.SQL.Add('insert into PDV_VendasPagamento (id_venda, forma_pagamento, valor_pago)');
+    dmConexao.qryGravarVenda.SQL.Add('values (:id_venda, :forma, :valor)');
+
+    for i := 1 to frmPagamento.gridPagamentos.RowCount - 1 do
+    begin
+      if frmPagamento.gridPagamentos.Cells[0, i] <> '' then
+      begin
+        dmConexao.qryGravarVenda.Parameters.ParamByName('id_venda').Value := IdVenda;
+        dmConexao.qryGravarVenda.Parameters.ParamByName('forma').Value := frmPagamento.gridPagamentos.Cells[0, i];
+
+        ValorPgtoDinamico := StrToFloatDef(StringReplace(frmPagamento.gridPagamentos.Cells[1, i], '.', '', [rfReplaceAll]), 0);
+        dmConexao.qryGravarVenda.Parameters.ParamByName('valor').Value := ValorPgtoDinamico;
+
+        dmConexao.qryGravarVenda.ExecSQL;
+      end;
+    end;
+    Result := IdVenda;
+
+    dmConexao.ConexaoBanco.CommitTrans;
+
+    except
+      on E: Exception do
+      begin
+        dmConexao.conexaoBanco.RollbackTrans;
+        raise Exception.Create('Erro ao gravar a venda no banco de dados: ' + E.message);
+      end;
+  end;
 end;
 
 procedure TfrmPDV.InsereItemFita(ACodigo, ADescricao: string; AQtde, AValorUnit,
