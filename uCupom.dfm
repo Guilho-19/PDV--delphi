@@ -29,7 +29,6 @@ object frmCupom: TfrmCupom
     ParentFont = False
     ReadOnly = True
     TabOrder = 0
-    ExplicitHeight = 561
   end
   object Button1: TButton
     Left = 0
@@ -40,8 +39,5 @@ object frmCupom: TfrmCupom
     Caption = 'Fechar'
     TabOrder = 1
     OnClick = Button1Click
-    ExplicitLeft = 261
-    ExplicitTop = 528
-    ExplicitWidth = 75
   end
 end

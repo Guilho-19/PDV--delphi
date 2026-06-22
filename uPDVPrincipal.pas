@@ -61,7 +61,7 @@ uses uDMConexao, uBuscaNomeProduto, uPagamento, uCupom;
 
 procedure TfrmPDV.AtualizaCabecalho(ANomeOperador, AStatusCaixa: string);
 const
-  mascaraCabecalho = 'NOME LOJA / %s / %s / %s';
+  mascaraCabecalho = 'MERCADO CENTRAL LTDA / %s / %s / %s';
 var
   DataHoraAtual: string;
 begin
