@@ -6,7 +6,8 @@ uses
   uPDVPrincipal in 'uPDVPrincipal.pas' {frmPDV},
   uBuscaNomeProduto in 'uBuscaNomeProduto.pas' {frmBuscaNomeProduto},
   uPagamento in 'uPagamento.pas' {frmPagamento},
-  uCupom in 'uCupom.pas' {frmCupom};
+  uCupom in 'uCupom.pas' {frmCupom},
+  uEntradaEstoque in 'uEntradaEstoque.pas' {frmEntradaEstoque};
 
 {$R *.res}
 
@@ -18,5 +19,6 @@ begin
   Application.CreateForm(TfrmBuscaNomeProduto, frmBuscaNomeProduto);
   Application.CreateForm(TfrmPagamento, frmPagamento);
   Application.CreateForm(TfrmCupom, frmCupom);
+  Application.CreateForm(TfrmEntradaEstoque, frmEntradaEstoque);
   Application.Run;
 end.

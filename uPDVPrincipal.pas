@@ -55,7 +55,7 @@ implementation
 
 {$R *.dfm}
 
-uses uDMConexao, uBuscaNomeProduto, uPagamento, uCupom;
+uses uDMConexao, uBuscaNomeProduto, uPagamento, uCupom, uEntradaEstoque;
 
 { TfrmPDV }
 
@@ -315,6 +315,11 @@ begin
 
       ShowMessage('Venda finalizada com sucesso!');
     end;
+  end;
+
+  if Key = VK_F4 then
+  begin
+    frmEntradaEstoque.ShowModal;
   end;
 
   if Key = VK_F5 then

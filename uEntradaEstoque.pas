@@ -14,6 +14,7 @@ type
     edtQuantidadeEntrada: TEdit;
     btnConfirmar: TButton;
     procedure edtCodigoBarrasKeyPress(Sender: TObject; var Key: Char);
+    procedure btnConfirmarClick(Sender: TObject);
   private
     { Private declarations }
   public
@@ -28,6 +29,53 @@ implementation
 {$R *.dfm}
 
 uses uDMConexao;
+
+procedure TfrmEntradaEstoque.btnConfirmarClick(Sender: TObject);
+var
+  QtdeEntrada: Double;
+begin
+  QtdeEntrada := StrToFloatDef(edtQuantidadeEntrada.Text, 0);
+
+  if QtdeEntrada <= 0 then
+  begin
+    ShowMessage('Atenção: Digite uma quantidade válida maior que zero.');
+    edtQuantidadeEntrada.SetFocus;
+    Exit;
+  end;
+
+  if lblNomeProduto.Caption = '...' then
+  begin
+    ShowMessage('Atenção: Busque um produto válido primeiro.');
+    edtCodigoBarras.SetFocus;
+    Exit;
+  end;
+
+  dmConexao.qryGravarVenda.Close;
+  dmConexao.qryGravarVenda.SQL.Clear;
+
+  dmConexao.qryGravarVenda.SQL.Add('update PDV_Produtos');
+  dmConexao.qryGravarVenda.SQL.Add('set estoque = estoque + :qtde_entrada');
+  dmConexao.qryGravarVenda.SQL.Add('where codigo_barras = :codigo');
+
+  dmConexao.qryGravarVenda.Parameters.ParamByName('qtde_entrada').Value := QtdeEntrada;
+  dmConexao.qryGravarVenda.Parameters.ParamByName('codigo').Value := edtCodigoBarras.Text;
+
+  try
+    dmConexao.qryGravarVenda.ExecSQL;
+    ShowMessage('Entrada registrada com sucesso!');
+
+    edtCodigoBarras.Clear;
+    edtQuantidadeEntrada.Clear;
+    lblNomeProduto.Caption := '...';
+    lblEstoqueAtual.Caption := 'Estoque Atual: 0,000';
+
+    edtCodigoBarras.SetFocus;
+
+  except
+    on E: Exception do
+      ShowMessage('Erro ao atualizar o estoque: ' + E.Message);
+  end;
+end;
 
 procedure TfrmEntradaEstoque.edtCodigoBarrasKeyPress(Sender: TObject;
   var Key: Char);

@@ -1,6 +1,7 @@
 object frmEntradaEstoque: TfrmEntradaEstoque
   Left = 0
   Top = 0
+  BorderStyle = bsDialog
   Caption = 'frmEntradaEstoque'
   ClientHeight = 441
   ClientWidth = 624
@@ -14,16 +15,16 @@ object frmEntradaEstoque: TfrmEntradaEstoque
   object lblNomeProduto: TLabel
     Left = 80
     Top = 168
-    Width = 89
+    Width = 43
     Height = 15
-    Caption = 'lblNomeProduto'
+    Caption = 'Produto'
   end
   object lblEstoqueAtual: TLabel
     Left = 80
     Top = 232
-    Width = 83
+    Width = 73
     Height = 15
-    Caption = 'lblEstoqueAtual'
+    Caption = 'Estoque Atual'
   end
   object edtCodigoBarras: TEdit
     Left = 80
@@ -31,7 +32,6 @@ object frmEntradaEstoque: TfrmEntradaEstoque
     Width = 121
     Height = 23
     TabOrder = 0
-    Text = 'edtCodigoBarras'
     OnKeyPress = edtCodigoBarrasKeyPress
   end
   object edtQuantidadeEntrada: TEdit
@@ -40,14 +40,14 @@ object frmEntradaEstoque: TfrmEntradaEstoque
     Width = 121
     Height = 23
     TabOrder = 1
-    Text = 'edtQuantidadeEntrada'
   end
   object btnConfirmar: TButton
     Left = 80
     Top = 376
     Width = 75
     Height = 25
-    Caption = 'btnConfirmar'
+    Caption = 'Confirmar'
     TabOrder = 2
+    OnClick = btnConfirmarClick
   end
 end
