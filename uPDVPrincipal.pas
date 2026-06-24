@@ -263,6 +263,15 @@ procedure TfrmPDV.FormKeyDown(Sender: TObject; var Key: Word; Shift: TShiftState
 var
   VendaGeradaID: Integer;
 begin
+  if Key = VK_ESCAPE then
+  begin
+    if Application.MessageBox('Deseja realmente encerrar o PDV?', 'Confirmação', MB_YESNO + MB_ICONQUESTION) = IDYES then
+    begin
+      Application.Terminate;
+    end;
+  end;
+
+
   if Key = VK_F1 then
   begin
     edtBuscaProduto.SetFocus;
