@@ -189,6 +189,7 @@ object frmPDV: TfrmPDV
       Font.Name = 'Segoe UI'
       Font.Style = [fsBold]
       MaxLength = 3
+      NumbersOnly = True
       ParentFont = False
       TabOrder = 1
       Text = '1'

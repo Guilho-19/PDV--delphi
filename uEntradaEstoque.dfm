@@ -2,52 +2,179 @@ object frmEntradaEstoque: TfrmEntradaEstoque
   Left = 0
   Top = 0
   BorderStyle = bsDialog
-  Caption = 'frmEntradaEstoque'
-  ClientHeight = 441
-  ClientWidth = 624
-  Color = clBtnFace
+  ClientHeight = 361
+  ClientWidth = 484
+  Color = clWhite
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
   Font.Height = -12
   Font.Name = 'Segoe UI'
   Font.Style = []
+  Position = poMainFormCenter
   TextHeight = 15
-  object lblNomeProduto: TLabel
-    Left = 80
-    Top = 168
-    Width = 43
-    Height = 15
-    Caption = 'Produto'
-  end
-  object lblEstoqueAtual: TLabel
-    Left = 80
-    Top = 232
-    Width = 73
-    Height = 15
-    Caption = 'Estoque Atual'
-  end
-  object edtCodigoBarras: TEdit
-    Left = 80
-    Top = 96
-    Width = 121
-    Height = 23
+  object pblCabecalho: TPanel
+    Left = 0
+    Top = 0
+    Width = 484
+    Height = 41
+    Align = alTop
+    BevelOuter = bvNone
+    Color = clBtnShadow
+    ParentBackground = False
     TabOrder = 0
-    OnKeyPress = edtCodigoBarrasKeyPress
+    object lblTituloCabecalho: TLabel
+      Left = 0
+      Top = 0
+      Width = 484
+      Height = 41
+      Align = alClient
+      Alignment = taCenter
+      Caption = 'ENTRADA DE ESTOQUE'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -21
+      Font.Name = 'Segoe UI'
+      Font.Style = [fsBold]
+      ParentFont = False
+      ExplicitWidth = 229
+      ExplicitHeight = 30
+    end
   end
-  object edtQuantidadeEntrada: TEdit
-    Left = 80
-    Top = 296
-    Width = 121
-    Height = 23
+  object pnlRodape: TPanel
+    Left = 0
+    Top = 320
+    Width = 484
+    Height = 41
+    Align = alBottom
+    BevelOuter = bvNone
+    Color = clBtnShadow
+    ParentBackground = False
     TabOrder = 1
+    ExplicitLeft = 200
+    ExplicitTop = 303
+    ExplicitWidth = 185
+    object btnConfirmar: TButton
+      Left = 326
+      Top = 8
+      Width = 150
+      Height = 25
+      Caption = 'Confirmar Entrada'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -13
+      Font.Name = 'Segoe UI'
+      Font.Style = [fsBold]
+      ParentFont = False
+      TabOrder = 0
+      OnClick = btnConfirmarClick
+    end
   end
-  object btnConfirmar: TButton
-    Left = 80
-    Top = 376
-    Width = 75
-    Height = 25
-    Caption = 'Confirmar'
+  object pnlCentral: TPanel
+    Left = 0
+    Top = 41
+    Width = 484
+    Height = 279
+    Align = alClient
+    BevelOuter = bvNone
+    Color = clWhite
+    ParentBackground = False
     TabOrder = 2
-    OnClick = btnConfirmarClick
+    ExplicitLeft = 256
+    ExplicitTop = 149
+    ExplicitWidth = 185
+    ExplicitHeight = 41
+    object lblEstoqueAtual: TLabel
+      Left = 129
+      Top = 117
+      Width = 107
+      Height = 17
+      Caption = 'ESTOQUE ATUAL:'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -13
+      Font.Name = 'Segoe UI'
+      Font.Style = [fsBold]
+      ParentFont = False
+    end
+    object lblNomeProduto: TLabel
+      Left = 29
+      Top = 140
+      Width = 15
+      Height = 25
+      Caption = '...'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -19
+      Font.Name = 'Segoe UI'
+      Font.Style = [fsBold]
+      ParentFont = False
+    end
+    object lblTituloCodigoBarras: TLabel
+      Left = 29
+      Top = 29
+      Width = 125
+      Height = 17
+      Caption = 'C'#211'DIGO DE BARRAS'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -13
+      Font.Name = 'Segoe UI'
+      Font.Style = [fsBold]
+      ParentFont = False
+    end
+    object lblTituloProduto: TLabel
+      Left = 29
+      Top = 117
+      Width = 63
+      Height = 17
+      Caption = 'PRODUTO'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -13
+      Font.Name = 'Segoe UI'
+      Font.Style = [fsBold]
+      ParentFont = False
+    end
+    object lblTituloQuantidadeEntrada: TLabel
+      Left = 29
+      Top = 189
+      Width = 176
+      Height = 17
+      Caption = 'QUANTIDADE DE ENTRADA:'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -13
+      Font.Name = 'Segoe UI'
+      Font.Style = [fsBold]
+      ParentFont = False
+    end
+    object edtCodigoBarras: TEdit
+      Left = 29
+      Top = 52
+      Width = 165
+      Height = 29
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -16
+      Font.Name = 'Segoe UI'
+      Font.Style = []
+      ParentFont = False
+      TabOrder = 0
+      OnKeyPress = edtCodigoBarrasKeyPress
+    end
+    object edtQuantidadeEntrada: TEdit
+      Left = 29
+      Top = 212
+      Width = 165
+      Height = 29
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -16
+      Font.Name = 'Segoe UI'
+      Font.Style = []
+      NumbersOnly = True
+      ParentFont = False
+      TabOrder = 1
+    end
   end
 end

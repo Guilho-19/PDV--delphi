@@ -4,15 +4,22 @@ interface
 
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
-  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls;
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, Vcl.ExtCtrls;
 
 type
   TfrmEntradaEstoque = class(TForm)
-    edtCodigoBarras: TEdit;
-    lblNomeProduto: TLabel;
-    lblEstoqueAtual: TLabel;
-    edtQuantidadeEntrada: TEdit;
+    pblCabecalho: TPanel;
+    lblTituloCabecalho: TLabel;
+    pnlRodape: TPanel;
     btnConfirmar: TButton;
+    pnlCentral: TPanel;
+    edtCodigoBarras: TEdit;
+    edtQuantidadeEntrada: TEdit;
+    lblEstoqueAtual: TLabel;
+    lblNomeProduto: TLabel;
+    lblTituloCodigoBarras: TLabel;
+    lblTituloProduto: TLabel;
+    lblTituloQuantidadeEntrada: TLabel;
     procedure edtCodigoBarrasKeyPress(Sender: TObject; var Key: Char);
     procedure btnConfirmarClick(Sender: TObject);
   private
@@ -67,7 +74,7 @@ begin
     edtCodigoBarras.Clear;
     edtQuantidadeEntrada.Clear;
     lblNomeProduto.Caption := '...';
-    lblEstoqueAtual.Caption := 'Estoque Atual: 0,000';
+    lblEstoqueAtual.Caption := 'ESTOQUE ATUAL: 0,000';
 
     edtCodigoBarras.SetFocus;
 
@@ -100,7 +107,7 @@ begin
       if not dmConexao.qryProdutos.IsEmpty then
       begin
         lblNomeProduto.Caption := dmConexao.qryProdutos.FieldByName('descricao').AsString;
-        lblEstoqueAtual.Caption := 'Estoque Atual: ' +
+        lblEstoqueAtual.Caption := 'ESTOQUE ATUAL: ' +
           FormatFloat('#,##0.000', dmConexao.qryProdutos.FieldByName('estoque').AsFloat);
 
         edtQuantidadeEntrada.SetFocus;
