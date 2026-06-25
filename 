@@ -1,0 +1,20 @@
+
+criação da validação de estoque impedindo que vendas sejam realizadas
+com estoque negativo
+# Please enter the commit message for your changes. Lines starting
+# with '#' will be ignored, and an empty message aborts the commit.
+#
+# On branch master
+# Your branch is up to date with 'origin/master'.
+#
+# Changes to be committed:
+#	modified:   Win64/Debug/PDV.exe
+#	modified:   Win64/Debug/PDV.rsm
+#	modified:   Win64/Debug/uPDVPrincipal.dcu
+#	renamed:    __history/uPDVPrincipal.dfm.~37~ -> __history/uPDVPrincipal.dfm.~46~
+#	renamed:    __history/uPDVPrincipal.dfm.~35~ -> __history/uPDVPrincipal.dfm.~47~
+#	renamed:    __history/uPDVPrincipal.dfm.~36~ -> __history/uPDVPrincipal.dfm.~48~
+#	renamed:    __history/uPDVPrincipal.pas.~66~ -> __history/uPDVPrincipal.pas.~79~
+#	modified:   uPDVPrincipal.dfm
+#	modified:   uPDVPrincipal.pas
+#
