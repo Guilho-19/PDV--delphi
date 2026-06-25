@@ -42,6 +42,7 @@ type
     procedure InsereItemFita(ACodigo, ADescricao: string; AQtde, AValorUnit, ADesconto: Double);
     procedure CancelarItemFita;
     procedure BuscarProduto(ACodigoDeBarras: string);
+    procedure CancelarVenda;
     function GravarVenda(AValorTotal, AValorPago, AValorTroco: Double): Integer;
     function SoTemNumeros(ATexto: string): Boolean;
   public
@@ -241,6 +242,72 @@ begin
   gridItens.Row := gridItens.RowCount - 1;
 end;
 
+procedure TfrmPDV.CancelarVenda;
+var
+  IdVendaStr: string;
+  IdVenda: Integer;
+begin
+  if not InputQuery('Cancelamento', 'Digite o número (ID) da venda a ser cancelada:', IdVendaStr) then
+    Exit;
+
+  IdVenda := StrToIntDef(IdVendaStr, 0);
+
+  if IdVenda <= 0 then
+  begin
+    Application.MessageBox('ID de venda inválido.', 'Erro', MB_ICONERROR + MB_OK);
+    Exit;
+  end;
+
+  dmConexao.qryGravarVenda.Close;
+  dmConexao.qryGravarVenda.SQL.Clear;
+  dmConexao.qryGravarVenda.SQL.Add('select status_venda from PDV_Vendas where id_venda = :id');
+  dmConexao.qryGravarVenda.Parameters.ParamByName('id').Value := IdVenda;
+  dmConexao.qryGravarVenda.Open;
+
+  if dmConexao.qryGravarVenda.IsEmpty then
+  begin
+    Application.MessageBox('Venda não encontrada no banco de dados!', 'Aviso', MB_ICONWARNING + MB_OK);
+    Exit;
+  end;
+
+  if dmConexao.qryGravarVenda.FieldByName('status_venda').AsString = 'C' then
+  begin
+    Application.MessageBox('Atenção: Esta venda já se encontra cancelada.', 'Aviso', MB_ICONWARNING + MB_OK);
+    Exit;
+  end;
+
+  if Application.MessageBox(Pchar('Deseja realmente cancelar a venda ' + IntToStr(IdVenda) + ' e devolver os itens ao estoque?'),
+                                  'Confirmar Estorno', MB_YESNO + MB_ICONQUESTION) = IDYES then
+  begin
+    try
+      dmConexao.qryGravarVenda.Close;
+      dmConexao.qryGravarVenda.SQL.Clear;
+      dmConexao.qryGravarVenda.SQL.Add('update p set p.estoque = p.estoque + i.quantidade ');
+      dmConexao.qryGravarVenda.SQL.Add('from PDV_Produtos p ');
+      dmConexao.qryGravarVenda.SQL.Add('inner join PDV_VendasItens i on (p.codigo_barras = i.codigo_barras ) ');
+      dmConexao.qryGravarVenda.SQL.Add('where i.id_venda = :id');
+      dmConexao.qryGravarVenda.Parameters.ParamByName('id').Value := IdVenda;
+      dmConexao.qryGravarVenda.ExecSQL;
+
+      dmConexao.qryGravarVenda.Close;
+      dmConexao.qryGravarVenda.SQL.Clear;
+      dmConexao.qryGravarVenda.SQL.Add('update PDV_Vendas set status_venda = ''C'' where id_venda = :id');
+      dmConexao.qryGravarVenda.Parameters.ParamByName('id').Value := IdVenda;
+      dmConexao.qryGravarVenda.ExecSQL;
+
+      Application.MessageBox('Venda cancelada e estoque devolvido com sucesso!', 'Sucesso', MB_ICONINFORMATION ++ MB_OK);
+    except
+      on E: Exception do
+        Application.MessageBox(PChar('Erro ao cancelar a venda: ' + E.Message), 'Erro no Banco de Dados', MB_ICONWARNING + MB_OK);
+    end;
+  end;
+
+
+
+
+
+end;
+
 procedure TfrmPDV.edtBuscaProdutoKeyPress(Sender: TObject; var Key: Char);
 var
   TextoDigitado: string;
@@ -348,6 +415,11 @@ begin
   if Key = VK_F5 then
   begin
     CancelarItemFita;
+  end;
+
+  if Key = VK_F6 then
+  begin
+    CancelarVenda;
   end;
 end;
 
