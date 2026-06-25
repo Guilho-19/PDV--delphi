@@ -107,10 +107,11 @@ var
   vPreco: Double;
   vQtdePadrao: Double;
   vCaminhoImagem: string;
+  vEstoqueAtual: Double;
 begin
   dmConexao.qryProdutos.Close;
   dmConexao.qryProdutos.SQL.Clear;
-  dmConexao.qryProdutos.SQL.Add('select codigo_barras, descricao, preco_venda, caminho_imagem from PDV_Produtos where codigo_barras = :codigo');
+  dmConexao.qryProdutos.SQL.Add('select codigo_barras, descricao, preco_venda, estoque, caminho_imagem from PDV_Produtos where codigo_barras = :codigo');
   dmConexao.qryProdutos.Parameters.ParamByName('codigo').Value := ACodigoDeBarras;
 
   try
@@ -121,6 +122,7 @@ begin
       vNome := dmConexao.qryProdutos.FieldByName('descricao').AsString;
       vPreco := dmConexao.qryProdutos.FieldByName('preco_venda').AsFloat;
       vCaminhoImagem := dmConexao.qryProdutos.FieldByName('caminho_imagem').AsString;
+      vEstoqueAtual := dmConexao.qryProdutos.FieldByName('estoque').AsFloat;
       vQtdePadrao := StrToFloatDef(edtQuantidade.Text, 1.0);
 
       if vQtdePadrao > 999 then
@@ -128,6 +130,18 @@ begin
         ShowMessage('Atenção: A quantidade máxima por item é 999.');
         vQtdePadrao := 1.0;
         edtQuantidade.Text := '1';
+      end;
+
+      if vQtdePadrao > vEstoqueAtual then
+      begin
+        Application.MessageBox(PChar('Estoque insuficiente para esta venda!' + #13#10 +
+                                     'Saldo atual: ' + FormatFloat('0.000', vEstoqueAtual)),
+                                     'Bloqueio de Estoque', MB_ICONERROR + MB_OK);
+
+        edtQuantidade.Text := '1';
+        edtBuscaProduto.Clear;
+        edtBuscaProduto.SetFocus;
+        Exit;
       end;
 
       lblNomeProdutoAtual.Caption := vNome;
