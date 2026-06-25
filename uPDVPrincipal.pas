@@ -56,7 +56,8 @@ implementation
 
 {$R *.dfm}
 
-uses uDMConexao, uBuscaNomeProduto, uPagamento, uCupom, uEntradaEstoque;
+uses uDMConexao, uBuscaNomeProduto, uPagamento, uCupom, uEntradaEstoque,
+  uRelatorios;
 
 { TfrmPDV }
 
@@ -420,6 +421,11 @@ begin
   if Key = VK_F6 then
   begin
     CancelarVenda;
+  end;
+
+  if Key = VK_F7 then
+  begin
+    frmRelatorios.ShowModal;
   end;
 end;
 

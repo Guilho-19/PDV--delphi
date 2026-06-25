@@ -226,14 +226,15 @@ object frmPDV: TfrmPDV
       AlignWithMargins = True
       Left = 16
       Top = 4
-      Width = 580
+      Width = 818
       Height = 60
       Margins.Left = 15
       Align = alLeft
       Caption = 
         '[ F1 ] BUSCAR PRODUTO   [ F3 ] FINALIZAR VENDA      [ F5 ] CANCE' +
-        'LAR'#13#10'[ F2 ] QUANTIDADE            [ F4 ] ENTRADA ESTOQUE    [ F6' +
-        ' ] ESTORNO VENDA '
+        'LAR               [ F7 ] RELAT'#211'RIOS                         '#13#10'[ ' +
+        'F2 ] QUANTIDADE            [ F4 ] ENTRADA ESTOQUE    [ F6 ] ESTO' +
+        'RNO VENDA    '
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clWindowText
       Font.Height = -16
