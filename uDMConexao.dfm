@@ -93,4 +93,25 @@ object dmConexao: TdmConexao
     Left = 176
     Top = 88
   end
+  object qryRelatorio: TADOQuery
+    Connection = conexaoBanco
+    CursorType = ctStatic
+    Parameters = <
+      item
+        Name = 'nome'
+        Attributes = [paNullable]
+        DataType = ftString
+        NumericScale = 255
+        Precision = 255
+        Size = 8000
+        Value = Null
+      end>
+    SQL.Strings = (
+      'select codigo_barras, descricao, preco_venda, caminho_imagem'
+      'from PDV_Produtos'
+      'where descricao like :nome'
+      'order by descricao')
+    Left = 224
+    Top = 88
+  end
 end

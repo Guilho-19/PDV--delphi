@@ -1,10 +1,10 @@
 # Extensões de compilação Delphi
-*.exe
 *.dcu
 *.rsm
 *.map
 *.identcache
 *.local
+*.res
 
 # Pastas de histórico e backup
 __history/

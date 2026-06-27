@@ -148,6 +148,14 @@
             <Form>frmEntradaEstoque</Form>
             <FormType>dfm</FormType>
         </DCCReference>
+        <DCCReference Include="uRelatorios.pas">
+            <Form>frmRelatorios</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
+        <DCCReference Include="uRelCaixa.pas">
+            <Form>frmRelCaixa</Form>
+            <FormType>dfm</FormType>
+        </DCCReference>
         <BuildConfiguration Include="Base">
             <Key>Base</Key>
         </BuildConfiguration>
@@ -1143,6 +1151,7 @@
                 <Platform value="Win32">True</Platform>
                 <Platform value="Win64">True</Platform>
             </Platforms>
+            <ModelSupport>False</ModelSupport>
         </BorlandProject>
         <ProjectFileVersion>12</ProjectFileVersion>
     </ProjectExtensions>

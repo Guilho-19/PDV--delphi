@@ -29,7 +29,7 @@ object frmRelatorios: TfrmRelatorios
     Top = 208
     Width = 99
     Height = 25
-    Caption = 'Gerar Rekat'#243'rio'
+    Caption = 'Gerar Relat'#243'rio'
     TabOrder = 1
     OnClick = btnGerarClick
   end
