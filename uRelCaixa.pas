@@ -4,10 +4,11 @@ interface
 
 uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
-  Vcl.Controls, Vcl.Forms, Vcl.Dialogs;
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Data.DB, RLReport;
 
 type
   TfrmRelCaixa = class(TForm)
+    dsRelatorio: TDataSource;
   private
     { Private declarations }
   public
