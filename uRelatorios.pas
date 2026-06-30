@@ -24,7 +24,7 @@ implementation
 
 {$R *.dfm}
 
-uses uDMConexao;
+uses uDMConexao, uRelCaixa;
 
 procedure TfrmRelatorios.btnGerarClick(Sender: TObject);
 begin
@@ -32,6 +32,23 @@ begin
     0:
       begin
         Application.MessageBox('Gerando Fechamento...', 'Aviso', MB_OK);
+
+        dmConexao.qryRelatorio.Close;
+        dmConexao.qryRelatorio.SQL.Clear;
+        dmConexao.qryRelatorio.SQL.Add('select forma_pagamento, sum(valor_pago) as total ');
+        dmConexao.qryRelatorio.SQL.Add('from PDV_VendasPagamento ');
+        dmConexao.qryRelatorio.SQL.Add('where id_venda in (select id_venda from PDV_Vendas where status_venda <> ''C'')');
+        dmConexao.qryRelatorio.SQL.Add('group by forma_pagamento');
+        dmConexao.qryRelatorio.Open;
+
+        if dmConexao.qryRelatorio.IsEmpty then
+        begin
+          Application.MessageBox('Nenhuma venda registrada para o caixa de hoje!', 'Aviso', MB_ICONWARNING + MB_OK);
+          Exit;
+        end;
+
+        frmRelCaixa.dsRelatorio.DataSet := dmConexao.qryRelatorio;
+        frmRelCaixa.rlCaixa.PreviewModal;
       end;
     1:
       begin

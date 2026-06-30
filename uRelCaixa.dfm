@@ -13,7 +13,7 @@ object frmRelCaixa: TfrmRelCaixa
   TextHeight = 15
   object rlCaixa: TRLReport
     Left = -6
-    Top = 0
+    Top = -8
     Width = 794
     Height = 1123
     DataSource = dsRelatorio
@@ -74,10 +74,70 @@ object frmRelCaixa: TfrmRelCaixa
         Font.Style = [fsBold, fsUnderline]
         ParentFont = False
       end
+      object RLDBResult1: TRLDBResult
+        Left = 567
+        Top = -11
+        Width = 68
+        Height = 16
+        DataField = 'total'
+        DataSource = dsRelatorio
+        Info = riSum
+        Text = ''
+      end
+    end
+    object RLBand3: TRLBand
+      Left = 38
+      Top = 89
+      Width = 718
+      Height = 32
+      object RLDBText1: TRLDBText
+        Left = 56
+        Top = 13
+        Width = 107
+        Height = 16
+        DataField = 'forma_pagamento'
+        DataSource = dsRelatorio
+        Text = ''
+      end
+      object RLDBText2: TRLDBText
+        Left = 265
+        Top = 17
+        Width = 29
+        Height = 16
+        DataField = 'total'
+        DataSource = dsRelatorio
+        DisplayMask = 'R$ #,##0.00'
+        Text = ''
+      end
+    end
+    object RLBand4: TRLBand
+      Left = 38
+      Top = 121
+      Width = 718
+      Height = 32
+      BandType = btSummary
+      object RLLabel3: TRLLabel
+        Left = 464
+        Top = 13
+        Width = 96
+        Height = 16
+        Caption = 'TOTAL DO DIA:'
+      end
+      object RLDBResult2: TRLDBResult
+        Left = 607
+        Top = 13
+        Width = 68
+        Height = 16
+        DataField = 'total'
+        DataSource = dsRelatorio
+        DisplayMask = 'R$ #,##0.00'
+        Info = riSum
+        Text = ''
+      end
     end
   end
   object dsRelatorio: TDataSource
-    Left = 576
-    Top = 24
+    Left = 752
+    Top = 8
   end
 end

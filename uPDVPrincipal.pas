@@ -57,7 +57,7 @@ implementation
 {$R *.dfm}
 
 uses uDMConexao, uBuscaNomeProduto, uPagamento, uCupom, uEntradaEstoque,
-  uRelatorios;
+  uRelatorios, uRelCaixa;
 
 { TfrmPDV }
 

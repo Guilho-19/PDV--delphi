@@ -94,7 +94,6 @@ object dmConexao: TdmConexao
     Top = 88
   end
   object qryRelatorio: TADOQuery
-    Active = True
     Connection = conexaoBanco
     CursorType = ctStatic
     Parameters = <
