@@ -2,6 +2,7 @@ object frmEntradaEstoque: TfrmEntradaEstoque
   Left = 0
   Top = 0
   BorderStyle = bsDialog
+  Caption = ' Entrada de Estoque'
   ClientHeight = 361
   ClientWidth = 484
   Color = clWhite
@@ -16,49 +17,49 @@ object frmEntradaEstoque: TfrmEntradaEstoque
     Left = 0
     Top = 0
     Width = 484
-    Height = 41
+    Height = 60
     Align = alTop
     BevelOuter = bvNone
-    Color = clBtnShadow
+    Color = $003A3A3A
     ParentBackground = False
     TabOrder = 0
     object lblTituloCabecalho: TLabel
       Left = 0
       Top = 0
       Width = 484
-      Height = 41
+      Height = 60
       Align = alClient
       Alignment = taCenter
+      Layout = tlCenter
       Caption = 'ENTRADA DE ESTOQUE'
       Font.Charset = DEFAULT_CHARSET
-      Font.Color = clWindowText
+      Font.Color = clWhite
       Font.Height = -21
       Font.Name = 'Segoe UI'
       Font.Style = [fsBold]
       ParentFont = False
-      ExplicitWidth = 229
-      ExplicitHeight = 30
     end
   end
   object pnlRodape: TPanel
     Left = 0
-    Top = 320
+    Top = 301
     Width = 484
-    Height = 41
+    Height = 60
     Align = alBottom
     BevelOuter = bvNone
-    Color = clBtnShadow
+    Color = $00F0F0F0
     ParentBackground = False
     TabOrder = 1
     ExplicitLeft = 200
     ExplicitTop = 303
     ExplicitWidth = 185
     object btnConfirmar: TButton
-      Left = 326
-      Top = 8
-      Width = 150
-      Height = 25
-      Caption = 'Confirmar Entrada'
+      Left = 286
+      Top = 10
+      Width = 180
+      Height = 40
+      Cursor = crHandPoint
+      Caption = 'CONFIRMAR ENTRADA'
       Font.Charset = DEFAULT_CHARSET
       Font.Color = clWindowText
       Font.Height = -13

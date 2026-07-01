@@ -2,10 +2,10 @@ object frmPagamento: TfrmPagamento
   Left = 0
   Top = 0
   BorderStyle = bsDialog
-  Caption = 'frmPagamento'
+  Caption = ' Pagamento'
   ClientHeight = 601
   ClientWidth = 703
-  Color = clBtnFace
+  Color = clWhite
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
   Font.Height = -12
@@ -20,75 +20,88 @@ object frmPagamento: TfrmPagamento
     Left = 0
     Top = 0
     Width = 703
-    Height = 41
+    Height = 60
     Align = alTop
     BevelOuter = bvNone
+    Color = $003A3A3A
+    ParentBackground = False
     TabOrder = 0
     object lblTituloPagamentoVenda: TLabel
       Left = 0
       Top = 0
       Width = 703
-      Height = 41
+      Height = 60
       Align = alClient
       Alignment = taCenter
       Caption = 'PAGAMENTO DA VENDA'
       Font.Charset = DEFAULT_CHARSET
-      Font.Color = clWindowText
+      Font.Color = clWhite
       Font.Height = -21
       Font.Name = 'Segoe UI'
       Font.Style = [fsBold]
       ParentFont = False
       Layout = tlCenter
-      ExplicitWidth = 246
-      ExplicitHeight = 30
     end
   end
   object pnlRodapePgto: TPanel
     Left = 0
-    Top = 560
+    Top = 551
     Width = 703
-    Height = 41
+    Height = 50
     Align = alBottom
     BevelOuter = bvNone
+    Color = $00F0F0F0
+    ParentBackground = False
     TabOrder = 1
     object lblLegendaPgto: TLabel
       Left = 0
       Top = 0
       Width = 703
-      Height = 41
+      Height = 50
       Align = alClient
       Alignment = taCenter
       Caption = 
         '[ F1 ] DINHEIRO   [ F2 ] CART'#195'O DE CR'#201'DITO   [ F3 ] CART'#195'O DE D'#201 +
         'BITO   [ F4 ] PIX'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -12
+      Font.Name = 'Segoe UI'
+      Font.Style = [fsBold]
+      ParentFont = False
       Layout = tlCenter
-      ExplicitWidth = 430
-      ExplicitHeight = 15
     end
   end
   object Panel2: TPanel
     Left = 353
-    Top = 41
+    Top = 60
     Width = 350
-    Height = 519
+    Height = 491
     Align = alRight
+    BevelOuter = bvNone
+    Color = clWhite
+    ParentBackground = False
     TabOrder = 2
     object gridPagamentos: TStringGrid
-      Left = 1
-      Top = 1
-      Width = 348
-      Height = 517
+      Left = 0
+      Top = 0
+      Width = 350
+      Height = 491
       Align = alClient
+      FixedColor = $00F2F2F2
+      Options = [goFixedVertLine, goFixedHorzLine, goVertLine, goHorzLine, goRangeSelect, goRowSelect]
       TabOrder = 0
     end
   end
   object Panel1: TPanel
     Left = 0
-    Top = 41
+    Top = 60
     Width = 353
-    Height = 519
+    Height = 491
     Align = alClient
     BevelOuter = bvNone
+    Color = clWhite
+    ParentBackground = False
     TabOrder = 3
     object lblTotalVenda: TLabel
       AlignWithMargins = True
@@ -107,8 +120,6 @@ object frmPagamento: TfrmPagamento
       Font.Name = 'Segoe UI'
       Font.Style = [fsBold]
       ParentFont = False
-      ExplicitLeft = 163
-      ExplicitWidth = 175
     end
     object lblTroco: TLabel
       AlignWithMargins = True
@@ -122,13 +133,11 @@ object frmPagamento: TfrmPagamento
       Alignment = taRightJustify
       Caption = 'Troco'
       Font.Charset = DEFAULT_CHARSET
-      Font.Color = clWindowText
+      Font.Color = $002E8B57
       Font.Height = -32
       Font.Name = 'Segoe UI'
       Font.Style = [fsBold]
       ParentFont = False
-      ExplicitLeft = 253
-      ExplicitWidth = 85
     end
     object lblValorRestante: TLabel
       AlignWithMargins = True
@@ -142,13 +151,11 @@ object frmPagamento: TfrmPagamento
       Alignment = taRightJustify
       Caption = 'Valor Restante'
       Font.Charset = DEFAULT_CHARSET
-      Font.Color = clWindowText
+      Font.Color = $000000C0
       Font.Height = -32
       Font.Name = 'Segoe UI'
       Font.Style = [fsBold]
       ParentFont = False
-      ExplicitLeft = 123
-      ExplicitWidth = 215
     end
     object edtValorPgto: TEdit
       AlignWithMargins = True
