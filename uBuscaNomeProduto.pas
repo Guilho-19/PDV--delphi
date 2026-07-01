@@ -11,6 +11,7 @@ type
   TfrmBuscaNomeProduto = class(TForm)
     dsConsultaNomeProduto: TDataSource;
     pnlTopoBusca: TPanel;
+    lblDica: TLabel;
     edtFiltroNome: TEdit;
     dbgProdutos: TDBGrid;
     procedure edtFiltroNomeChange(Sender: TObject);

@@ -2,10 +2,10 @@ object frmBuscaNomeProduto: TfrmBuscaNomeProduto
   Left = 0
   Top = 0
   BorderStyle = bsDialog
-  Caption = 'frmBuscaNomeProduto'
+  Caption = ' Busca R'#225'pida de Produtos'
   ClientHeight = 468
   ClientWidth = 913
-  Color = clBtnFace
+  Color = clWhite
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
   Font.Height = -12
@@ -17,26 +17,47 @@ object frmBuscaNomeProduto: TfrmBuscaNomeProduto
     Left = 0
     Top = 0
     Width = 913
-    Height = 65
+    Height = 80
     Align = alTop
+    BevelOuter = bvNone
+    Color = 3815994
+    ParentBackground = False
     TabOrder = 0
-    ExplicitWidth = 1328
+    DesignSize = (
+      913
+      80)
+    object lblDica: TLabel
+      Left = 20
+      Top = 15
+      Width = 167
+      Height = 17
+      Caption = 'Digite o nome do produto:'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWhite
+      Font.Height = -13
+      Font.Name = 'Segoe UI'
+      Font.Style = [fsBold]
+      ParentFont = False
+    end
     object edtFiltroNome: TEdit
-      Left = 112
-      Top = 22
-      Width = 185
-      Height = 25
+      Left = 20
+      Top = 38
+      Width = 873
+      Height = 23
+      Anchors = [akLeft, akTop, akRight]
       TabOrder = 0
       OnChange = edtFiltroNomeChange
     end
   end
   object dbgProdutos: TDBGrid
     Left = 0
-    Top = 65
+    Top = 80
     Width = 913
-    Height = 403
+    Height = 388
     Align = alClient
     DataSource = dsConsultaNomeProduto
+    DrawingStyle = gdsGradient
+    Options = [dgTitles, dgIndicator, dgColumnResize, dgColLines, dgRowLines, dgTabs, dgRowSelect, dgConfirmDelete, dgCancelOnExit, dgTitleClick, dgTitleHotTrack]
     ReadOnly = True
     TabOrder = 1
     TitleFont.Charset = DEFAULT_CHARSET
@@ -49,7 +70,7 @@ object frmBuscaNomeProduto: TfrmBuscaNomeProduto
   end
   object dsConsultaNomeProduto: TDataSource
     DataSet = dmConexao.qryConsultaNomeProduto
-    Left = 568
-    Top = 16
+    Left = 832
+    Top = 96
   end
 end
