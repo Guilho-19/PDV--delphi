@@ -9,6 +9,7 @@ uses
 type
   TfrmRelatorios = class(TForm)
     Panel1: TPanel;
+    lblTitulo: TLabel;
     Panel2: TPanel;
     rgSelecaoRelatorio: TRadioGroup;
     Panel3: TPanel;

@@ -16,70 +16,91 @@ object frmRelatorios: TfrmRelatorios
     Left = 0
     Top = 0
     Width = 624
-    Height = 41
+    Height = 60
     Align = alTop
+    BevelOuter = bvNone
+    Color = $003A3A3A
+    ParentBackground = False
     TabOrder = 0
-    ExplicitLeft = 304
-    ExplicitTop = 88
-    ExplicitWidth = 185
+    object lblTitulo: TLabel
+      Left = 20
+      Top = 15
+      Width = 230
+      Height = 28
+      Caption = 'Central de Relat'#243'rios'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWhite
+      Font.Height = -20
+      Font.Name = 'Segoe UI'
+      Font.Style = [fsBold]
+      ParentFont = False
+    end
   end
   object Panel2: TPanel
     Left = 0
-    Top = 41
+    Top = 60
     Width = 624
-    Height = 359
+    Height = 320
     Align = alClient
+    BevelOuter = bvNone
+    Color = clWhite
+    ParentBackground = False
     TabOrder = 1
-    ExplicitLeft = 312
-    ExplicitTop = 304
-    ExplicitWidth = 185
-    ExplicitHeight = 41
     object rgSelecaoRelatorio: TRadioGroup
       AlignWithMargins = True
-      Left = 16
-      Top = 16
-      Width = 592
-      Height = 327
-      Margins.Left = 15
-      Margins.Top = 15
-      Margins.Right = 15
-      Margins.Bottom = 15
+      Left = 20
+      Top = 20
+      Width = 584
+      Height = 280
+      Margins.Left = 20
+      Margins.Top = 20
+      Margins.Right = 20
+      Margins.Bottom = 20
       Align = alClient
-      Caption = 'Selecione o Relat'#243'rio Desejado:'
+      Caption = ' Selecione o relat'#243'rio desejado: '
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -16
+      Font.Name = 'Segoe UI'
+      Font.Style = []
       Items.Strings = (
         'Fechamento de Caixa'
         'Ranking de Produtos mais Vendidos'
         'Hist'#243'rico de Vendas Canceladas')
+      ParentFont = False
       TabOrder = 0
-      ExplicitLeft = 0
-      ExplicitTop = 2
-      ExplicitWidth = 622
-      ExplicitHeight = 357
     end
   end
   object Panel3: TPanel
     Left = 0
-    Top = 400
+    Top = 380
     Width = 624
-    Height = 41
+    Height = 61
     Align = alBottom
+    BevelOuter = bvNone
+    Color = $00F0F0F0
+    ParentBackground = False
     TabOrder = 2
-    ExplicitLeft = 1
-    ExplicitTop = 0
-    ExplicitWidth = 622
     object btnGerar: TButton
       AlignWithMargins = True
-      Left = 521
-      Top = 4
-      Width = 99
-      Height = 33
+      Left = 454
+      Top = 10
+      Width = 150
+      Height = 41
+      Cursor = crHandPoint
+      Margins.Top = 10
+      Margins.Right = 20
+      Margins.Bottom = 10
       Align = alRight
-      Caption = 'Gerar Relat'#243'rio'
+      Caption = 'GERAR RELAT'#211'RIO'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -13
+      Font.Name = 'Segoe UI'
+      Font.Style = [fsBold]
+      ParentFont = False
       TabOrder = 0
       OnClick = btnGerarClick
-      ExplicitLeft = 512
-      ExplicitTop = 6
-      ExplicitHeight = 25
     end
   end
 end
