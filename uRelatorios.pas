@@ -8,7 +8,10 @@ uses
 
 type
   TfrmRelatorios = class(TForm)
+    Panel1: TPanel;
+    Panel2: TPanel;
     rgSelecaoRelatorio: TRadioGroup;
+    Panel3: TPanel;
     btnGerar: TButton;
     procedure btnGerarClick(Sender: TObject);
   private
