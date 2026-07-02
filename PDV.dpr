@@ -9,7 +9,8 @@ uses
   uCupom in 'uCupom.pas' {frmCupom},
   uEntradaEstoque in 'uEntradaEstoque.pas' {frmEntradaEstoque},
   uRelatorios in 'uRelatorios.pas' {frmRelatorios},
-  uRelCaixa in 'uRelCaixa.pas' {frmRelCaixa};
+  uRelCaixa in 'uRelCaixa.pas' {frmRelCaixa},
+  uRelVendasCanceladas in 'uRelVendasCanceladas.pas' {frmRelVendasCanceladas};
 
 {$R *.res}
 
@@ -24,5 +25,6 @@ begin
   Application.CreateForm(TfrmEntradaEstoque, frmEntradaEstoque);
   Application.CreateForm(TfrmRelatorios, frmRelatorios);
   Application.CreateForm(TfrmRelCaixa, frmRelCaixa);
+  Application.CreateForm(TfrmRelVendasCanceladas, frmRelVendasCanceladas);
   Application.Run;
 end.

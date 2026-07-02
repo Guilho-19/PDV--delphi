@@ -23,8 +23,12 @@ type
     RLDBText3: TRLDBText;
     RLDBResult1: TRLDBResult;
     Label5: TLabel;
+    RLSystemInfo1: TRLSystemInfo;
+    procedure RLBand3BeforePrint(Sender: TObject; var PrintIt: Boolean);
+    procedure RLBand1BeforePrint(Sender: TObject; var PrintIt: Boolean);
   private
     { Private declarations }
+    FZebrado: Boolean;
   public
     { Public declarations }
   end;
@@ -37,5 +41,25 @@ implementation
 {$R *.dfm}
 
 uses uDMConexao;
+
+procedure TfrmRelVendasCanceladas.RLBand1BeforePrint(Sender: TObject; var PrintIt: Boolean);
+begin
+  FZebrado := False;
+end;
+
+procedure TfrmRelVendasCanceladas.RLBand3BeforePrint(Sender: TObject; var PrintIt: Boolean);
+begin
+  if FZebrado then
+  begin
+    RLBand3.Color := $00F2F2F2;
+    RLBand3.Transparent := False;
+  end
+  else
+  begin
+    RLBand3.Color := clWhite;
+    RLBand3.Transparent := True;
+  end;
+  FZebrado := not FZebrado;
+end;
 
 end.
