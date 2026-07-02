@@ -28,7 +28,7 @@ implementation
 
 {$R *.dfm}
 
-uses uDMConexao, uRelCaixa;
+uses uDMConexao, uRelCaixa, uRelVendasCanceladas;
 
 procedure TfrmRelatorios.btnGerarClick(Sender: TObject);
 begin
@@ -61,6 +61,25 @@ begin
     2:
       begin
         Application.MessageBox('Gerando Vendas Canceladas...', 'Aviso', MB_OK);
+
+        dmConexao.qryRelatorio.Close;
+        dmConexao.qryRelatorio.SQL.Clear;
+        dmConexao.qryRelatorio.SQL.Add('select id_venda, data_hora, valor_total ');
+        dmConexao.qryRelatorio.SQL.Add('from PDV_Vendas ');
+        dmConexao.qryRelatorio.SQL.Add('where status_venda = ''C'' ');
+        dmConexao.qryRelatorio.SQL.Add('order by data_hora desc');
+        dmConexao.qryRelatorio.Open;
+
+        if dmConexao.qryRelatorio.IsEmpty then
+        begin
+          Application.MessageBox('Nenhuma venda cancelada encontrada!', 'Auditoria', MB_ICONWARNING + MB_OK);
+          Exit;
+        end;
+
+        frmRelVendasCanceladas.dsCanceladas.DataSet := dmConexao.qryRelatorio;
+        frmRelVendasCanceladas.rlCanceladas.PreviewModal;
+
+
       end;
   end;
 end;

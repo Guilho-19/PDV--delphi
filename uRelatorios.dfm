@@ -19,13 +19,13 @@ object frmRelatorios: TfrmRelatorios
     Height = 60
     Align = alTop
     BevelOuter = bvNone
-    Color = $003A3A3A
+    Color = 3815994
     ParentBackground = False
     TabOrder = 0
     object lblTitulo: TLabel
       Left = 20
       Top = 15
-      Width = 230
+      Width = 199
       Height = 28
       Caption = 'Central de Relat'#243'rios'
       Font.Charset = DEFAULT_CHARSET
@@ -78,7 +78,7 @@ object frmRelatorios: TfrmRelatorios
     Height = 61
     Align = alBottom
     BevelOuter = bvNone
-    Color = $00F0F0F0
+    Color = 15790320
     ParentBackground = False
     TabOrder = 2
     object btnGerar: TButton

@@ -50,7 +50,7 @@ begin
   memCupom.Lines.Add('DATA/HORA: ' + DateTimeToStr(Now));
   memCupom.Lines.Add('----------------------------------------');
   memCupom.Lines.Add('ITEM COD      DESCRICAO                 ');
-  memCupom.Lines.Add('     QTD  x   VL.UNIT            SUBTOTAL');
+  memCupom.Lines.Add('     QTD  x   VL.UNIT           SUBTOTAL');
   memCupom.Lines.Add('----------------------------------------');
 
   dmConexao.qryGravarVenda.Close;
