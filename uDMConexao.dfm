@@ -45,7 +45,9 @@ object dmConexao: TdmConexao
         Value = Null
       end>
     SQL.Strings = (
-      'select codigo_barras, descricao, preco_venda, caminho_imagem'
+      
+        'select codigo_barras, descricao, preco_venda, estoque, caminho_i' +
+        'magem'
       'from PDV_Produtos'
       'where descricao like :nome'
       'order by descricao')
@@ -70,6 +72,12 @@ object dmConexao: TdmConexao
     object qryConsultaNomeProdutocaminho_imagem: TStringField
       FieldName = 'caminho_imagem'
       Size = 255
+    end
+    object qryConsultaNomeProdutoestoque: TBCDField
+      DisplayLabel = 'ESTOQUE ATUAL'
+      FieldName = 'estoque'
+      Precision = 18
+      Size = 3
     end
   end
   object qryGravarVenda: TADOQuery

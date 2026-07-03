@@ -4,7 +4,7 @@ object frmBuscaNomeProduto: TfrmBuscaNomeProduto
   BorderStyle = bsDialog
   Caption = ' Busca R'#225'pida de Produtos'
   ClientHeight = 468
-  ClientWidth = 913
+  ClientWidth = 1001
   Color = clWhite
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
@@ -16,15 +16,16 @@ object frmBuscaNomeProduto: TfrmBuscaNomeProduto
   object pnlTopoBusca: TPanel
     Left = 0
     Top = 0
-    Width = 913
+    Width = 1001
     Height = 80
     Align = alTop
     BevelOuter = bvNone
     Color = 3815994
     ParentBackground = False
     TabOrder = 0
+    ExplicitWidth = 913
     DesignSize = (
-      913
+      1001
       80)
     object lblDica: TLabel
       Left = 20
@@ -42,17 +43,18 @@ object frmBuscaNomeProduto: TfrmBuscaNomeProduto
     object edtFiltroNome: TEdit
       Left = 20
       Top = 38
-      Width = 873
+      Width = 961
       Height = 23
       Anchors = [akLeft, akTop, akRight]
       TabOrder = 0
       OnChange = edtFiltroNomeChange
+      ExplicitWidth = 873
     end
   end
   object dbgProdutos: TDBGrid
     Left = 0
     Top = 80
-    Width = 913
+    Width = 1001
     Height = 388
     Align = alClient
     DataSource = dsConsultaNomeProduto
@@ -67,10 +69,31 @@ object frmBuscaNomeProduto: TfrmBuscaNomeProduto
     TitleFont.Style = []
     OnDblClick = dbgProdutosDblClick
     OnKeyPress = dbgProdutosKeyPress
+    Columns = <
+      item
+        Expanded = False
+        FieldName = 'codigo_barras'
+        Visible = True
+      end
+      item
+        Expanded = False
+        FieldName = 'descricao'
+        Visible = True
+      end
+      item
+        Expanded = False
+        FieldName = 'preco_venda'
+        Visible = True
+      end
+      item
+        Expanded = False
+        FieldName = 'estoque'
+        Visible = True
+      end>
   end
   object dsConsultaNomeProduto: TDataSource
     DataSet = dmConexao.qryConsultaNomeProduto
-    Left = 832
+    Left = 816
     Top = 96
   end
 end

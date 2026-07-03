@@ -17,6 +17,7 @@ type
     qryConsultaNomeProdutocaminho_imagem: TStringField;
     qryGravarVenda: TADOQuery;
     qryRelatorio: TADOQuery;
+    qryConsultaNomeProdutoestoque: TBCDField;
   private
     { Private declarations }
   public

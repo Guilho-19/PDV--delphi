@@ -2,10 +2,10 @@ object frmPDV: TfrmPDV
   Left = 0
   Top = 0
   BorderStyle = bsNone
-  Caption = 'frmPDV'
+  Caption = ' PDV Principal'
   ClientHeight = 628
   ClientWidth = 1242
-  Color = clBtnFace
+  Color = clWhite
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
   Font.Height = -12
@@ -20,37 +20,39 @@ object frmPDV: TfrmPDV
     Left = 0
     Top = 0
     Width = 1242
-    Height = 41
+    Height = 60
     Align = alTop
+    BevelOuter = bvNone
+    Color = 3815994
+    ParentBackground = False
     TabOrder = 0
     object lblCabecalho: TLabel
-      Left = 1
-      Top = 1
-      Width = 1240
-      Height = 39
+      Left = 0
+      Top = 0
+      Width = 1242
+      Height = 60
       Align = alClient
       Alignment = taCenter
       AutoSize = False
       Caption = 'NOME LOJA / NOME OPERADOR / DATA HORA / STATUS CAIXA'
       Font.Charset = DEFAULT_CHARSET
-      Font.Color = clWindowText
+      Font.Color = clWhite
       Font.Height = -21
       Font.Name = 'Segoe UI'
       Font.Style = [fsBold]
       ParentFont = False
       Layout = tlCenter
-      ExplicitLeft = 168
-      ExplicitTop = 13
-      ExplicitWidth = 339
-      ExplicitHeight = 15
     end
   end
   object pnlLateral: TPanel
     Left = 0
-    Top = 41
+    Top = 60
     Width = 1145
-    Height = 519
+    Height = 500
     Align = alLeft
+    BevelOuter = bvNone
+    Color = clWhite
+    ParentBackground = False
     TabOrder = 1
     object lblNomeProdutoAtual: TLabel
       Left = 40
@@ -202,32 +204,34 @@ object frmPDV: TfrmPDV
     Width = 1242
     Height = 68
     Align = alBottom
+    BevelOuter = bvNone
+    Color = 15790320
+    ParentBackground = False
     TabOrder = 2
     object lblTotalVenda: TLabel
       AlignWithMargins = True
-      Left = 1010
-      Top = 4
+      Left = 1011
+      Top = 3
       Width = 216
-      Height = 60
+      Height = 62
       Margins.Right = 15
       Align = alRight
       Caption = 'TOTAL R$'
-      Color = clMenuHighlight
       Font.Charset = DEFAULT_CHARSET
-      Font.Color = clWindowText
+      Font.Color = 3355443
       Font.Height = -48
       Font.Name = 'Segoe UI'
       Font.Style = [fsBold]
-      ParentColor = False
       ParentFont = False
+      ExplicitLeft = 1010
       ExplicitHeight = 65
     end
     object lblLegenda: TLabel
       AlignWithMargins = True
-      Left = 16
-      Top = 4
+      Left = 15
+      Top = 3
       Width = 818
-      Height = 60
+      Height = 62
       Margins.Left = 15
       Align = alLeft
       Caption = 
@@ -241,16 +245,20 @@ object frmPDV: TfrmPDV
       Font.Name = 'Segoe UI'
       Font.Style = [fsBold]
       ParentFont = False
+      ExplicitLeft = 16
+      ExplicitTop = 4
       ExplicitHeight = 42
     end
   end
   object gridItens: TStringGrid
     Left = 1145
-    Top = 41
+    Top = 60
     Width = 97
-    Height = 519
+    Height = 500
     Align = alClient
     ColCount = 7
+    FixedColor = 15132390
+    Options = [goFixedVertLine, goFixedHorzLine, goVertLine, goHorzLine, goRangeSelect, goRowSelect]
     TabOrder = 3
   end
   object trmRelogio: TTimer
