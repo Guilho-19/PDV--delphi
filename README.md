@@ -4,32 +4,55 @@
 
 ## 📌 Sobre o Projeto
 
-O **Sistema de Ponto de Venda (PDV)** é uma aplicação desktop desenvolvida com foco em otimizar o processo de vendas e o controle de estoque do varejo. O objetivo principal do sistema é fornecer uma interface fluida, analítica e robusta para operações de caixa e gerenciamento diário de inventário.
+O **Sistema de Ponto de Venda (PDV)** é uma aplicação desktop desenvolvida com foco em otimizar o processo de vendas e o controle de estoque do varejo. O objetivo principal do sistema é fornecer uma interface fluida, moderna e de rápido acesso por teclado, para operações de caixa e gerenciamento diário.
 
-Através de uma interface construída nativamente em Delphi VCL e integração com um banco de dados relacional (SQL Server), o projeto permite a busca rápida de produtos, o processamento de pagamentos sem falhas e o registro seguro das transações, facilitando o fluxo de trabalho do operador de caixa.
+O sistema possui uma interface flat modernizada nativamente em Delphi VCL e integração com banco de dados Microsoft SQL Server via ADO, permitindo transações seguras, rápidas e estáveis.
 
-## 🚀 Funcionalidades
+## ⚙️ Funcionalidades
 
-* **Controle de Estoque em Tempo Real:** Gerenciamento integrado e atualização dinâmica do estoque dos itens após o fechamento de cada venda.
-* **Busca de Produtos Otimizada:** Tela de busca nativa com parametrização de fotos (pasta `img`), garantindo uma identificação visual rápida dos produtos.
-* **Processamento de Pagamentos:** Lógica dedicada e validada para finalizar as vendas de forma segura (`uPagamento`).
-* **Registro Integrado de Vendas:** Validação rigorosa e gravação das vendas diretamente no banco de dados (`uDMConexao`).
-* **Impressão de Cupons:** Formatação automática e emissão do cupom de venda para o cliente (`uCupom`).
+### 1. Frente de Caixa (PDV)
+- **Registro Otimizado:** Inserção rápida de itens via código de barras com atalho multiplicador de quantidades.
+- **Validação de Estoque:** Bloqueio automático de vendas com quantidade superior ao estoque atual.
+- **Cancelamentos:** Permite o cancelamento individual de itens e o estorno completo da venda atual.
+- **Identificação Visual:** Exibe a foto cadastrada do produto em tempo real na tela (via campo `caminho_imagem`).
 
-## 💻 Tecnologias e Arquitetura
+### 2. Pagamento de Vendas
+- Múltiplas formas de recebimento integradas (Dinheiro, Cartão de Crédito, Cartão de Débito, Pix).
+- Pagamento fracionado ou dividido (múltiplas formas para a mesma venda).
+- Cálculo automático de saldo restante e troco em tempo real.
 
-O projeto foi construído utilizando as seguintes tecnologias:
+### 3. Busca e Consulta Rápida
+- Consulta interativa de produtos pela descrição do nome.
+- Grid que exibe em tempo real: Código de Barras, Descrição, Preço e Estoque Atual.
+- Tela com foco voltado à usabilidade do operador.
 
-* **Frontend & Lógica de Negócios:** Delphi VCL, Object Pascal
-* **Banco de Dados:** Microsoft SQL Server
-* **Consultas e Acesso a Dados:** T-SQL otimizado (via Data Module)
+### 4. Controle de Estoque
+- Módulo prático e direto de **Entrada de Estoque**.
+- Permite o abastecimento ágil no banco de dados lendo o código de barras e adicionando as novas unidades.
 
-## ⚙️ Estrutura e Configuração
+### 5. Relatórios e Auditoria (FortesReport)
+- **Fechamento de Caixa:** Resumo financeiro rápido contendo os subtotais e a somatória do dia agrupada por forma de pagamento.
+- **Vendas Canceladas:** Histórico e rastreabilidade de todas as vendas estornadas (auditoria e prevenção de perdas).
+- Interfaces dos relatórios modernizadas, padronizadas e com leitura "zebrada".
 
-Para executar e compreender a arquitetura do projeto, os principais módulos estão organizados da seguinte forma:
+### 6. Emissão de Cupom Não Fiscal
+- Geração e formatação automática em modo texto do cupom de venda.
+- Envio direto de impressão via `TPrinter` assim que a venda é concluída e o troco é exibido.
 
-* **`PDV.dproj`**: Arquivo principal e configurações do projeto.
-* **`uPDVPrincipal`**: Tela e lógica central do Ponto de Venda.
-* **`uDMConexao`**: Data Module responsável por gerenciar a conexão com o banco de dados.
-* **Pasta `/img`**: Diretório que deve conter as fotos parametrizadas dos produtos.
-* **Pastas `Win32/` / `Win64/`**: Diretórios de compilação dos binários executáveis.
+## 🛠️ Tecnologias e Arquitetura
+
+O projeto foi construído sobre a seguinte stack:
+
+* **Linguagem & Interface:** Delphi VCL (Object Pascal)
+* **Banco de Dados:** Microsoft SQL Server (Integrado via dbGo / ADO)
+* **Motor de Relatórios:** Fortes Report CE
+
+## 📂 Estrutura de Arquivos Principais
+
+* **`uPDVPrincipal`**: Tela e lógica central de vendas.
+* **`uPagamento`**: Módulo de cálculos e fechamento da venda.
+* **`uBuscaNomeProduto`**: Formulário de pesquisa em formato de grid.
+* **`uEntradaEstoque`**: Formulário de acréscimo de quantidades ao inventário.
+* **`uRelatorios` / `uRelCaixa` / `uRelVendasCanceladas`**: Suíte de ferramentas gerenciais.
+* **`uCupom`**: Lógica de preenchimento de variáveis no cupom em impressoras de bobina.
+* **`uDMConexao`**: Data Module responsável pelo Data Layer, abrigando queries T-SQL e configurações de acesso ao banco.
